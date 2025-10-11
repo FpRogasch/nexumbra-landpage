@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   Container,
+  Flex,
   Heading,
   HStack,
   Icon,
@@ -178,16 +179,15 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
         transition: 'all 0.3s',
       }}
     >
-      <SimpleGrid
-        columns={[1, 1, 2]}
-        spacing={0}
-        direction={isEven ? 'row' : 'row-reverse'}
+      <Flex
+        direction={{ base: 'column', md: isEven ? 'row' : 'row-reverse' }}
+        gap={0}
       >
         {/* Image */}
         <Box
           position="relative"
           h={['300px', '400px', '500px']}
-          order={isEven ? 1 : [1, 1, 2]}
+          flex="1"
         >
           <Image
             src={project.image}
@@ -219,7 +219,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           align="start"
           spacing={6}
           p={[6, 8, 12]}
-          order={isEven ? 2 : [2, 2, 1]}
+          flex="1"
         >
           <VStack align="start" spacing={4} w="full">
             <Heading size="xl">{project.title}</Heading>
@@ -247,7 +247,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
             {Object.entries(project.stats).map(([key, value]) => (
               <VStack key={key} align="start" spacing={1}>
                 <Text fontSize="2xl" fontWeight="bold" color={`${project.color}.500`}>
-                  {value}
+                  {String(value)}
                 </Text>
                 <Text fontSize="sm" color="gray.500" textTransform="capitalize">
                   {key}
@@ -295,7 +295,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
             Ver Caso de Estudio
           </Button>
         </VStack>
-      </SimpleGrid>
+      </Flex>
     </Box>
   )
 }

@@ -26,9 +26,9 @@ export function CodeRain() {
           position="absolute"
           left={`${col * 20}px`}
           top={-20}
-          animation={`fall ${5 + Math.random() * 10}s linear infinite`}
-          animationDelay={`${Math.random() * 5}s`}
           sx={{
+            animation: `fall ${5 + Math.random() * 10}s linear infinite`,
+            animationDelay: `${Math.random() * 5}s`,
             '@keyframes fall': {
               '0%': { transform: 'translateY(-100%)' },
               '100%': { transform: 'translateY(100vh)' },

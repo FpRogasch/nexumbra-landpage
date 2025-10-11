@@ -16,12 +16,14 @@ export function GlowingCard({
   glowColor = 'primary',
   ...props
 }: GlowingCardProps) {
+  const { position = "relative", ...chakraProps } = props
+  
   return (
     <MotionBox
-      position="relative"
+      position={position}
       whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3 }}
-      {...props}
+      transition={{ duration: 0.3 } as any}
+      {...(chakraProps as any)}
     >
       {/* Glow effect */}
       <Box

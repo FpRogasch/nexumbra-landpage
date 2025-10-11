@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, useTheme, useColorModeValue } from '@chakra-ui/react'
 
 export const BackgroundGradient = ({ hideOverlay, ...props }: any) => {

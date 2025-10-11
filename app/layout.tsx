@@ -1,19 +1,20 @@
 import { ColorModeScript, theme } from '@chakra-ui/react'
+import { Ubuntu } from 'next/font/google'
 
 import { Provider } from './provider'
+
+const ubuntu = Ubuntu({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  display: 'swap',
+})
 
 export default function Layout(props: { children: React.ReactNode }) {
   const colorMode = theme.config.initialColorMode
 
   return (
-    <html lang="es" data-theme={colorMode} style={{ colorScheme: colorMode }}>
+    <html lang="es" data-theme={colorMode} style={{ colorScheme: colorMode }} className={ubuntu.className}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap"
-          rel="stylesheet"
-        />
         <link
           rel="apple-touch-icon"
           sizes="76x76"
@@ -33,7 +34,7 @@ export default function Layout(props: { children: React.ReactNode }) {
         />
         <link rel="manifest" href="/static/favicons/manifest.json" />
       </head>
-      <body className={`chakra-ui-${colorMode}`}>
+      <body className={`chakra-ui-${colorMode} ${ubuntu.className}`}>
         <ColorModeScript initialColorMode={colorMode} />
         <Provider>{props.children}</Provider>
       </body>

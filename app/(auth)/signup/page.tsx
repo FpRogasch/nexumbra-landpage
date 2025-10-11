@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Center, Stack, Text } from '@chakra-ui/react'
 import { Auth } from '@saas-ui/auth'
 import { Link } from '@saas-ui/react'
@@ -7,7 +9,6 @@ import { FaGithub, FaGoogle } from 'react-icons/fa'
 
 import { Features } from '#components/features'
 import { BackgroundGradient } from '#components/gradients/background-gradient'
-import { PageTransition } from '#components/motion/page-transition'
 import { Section } from '#components/section'
 import siteConfig from '#data/config'
 
@@ -37,13 +38,14 @@ const Login: NextPage = () => {
           borderColor: 'gray.700',
         }}
       />
-      <PageTransition height="100%" display="flex" alignItems="center">
-        <Stack
-          width="100%"
-          alignItems={{ base: 'center', lg: 'flex-start' }}
-          spacing="20"
-          flexDirection={{ base: 'column', lg: 'row' }}
-        >
+      <Stack
+        height="100%"
+        display="flex"
+        width="100%"
+        alignItems={{ base: 'center', lg: 'flex-start' }}
+        spacing="20"
+        flexDirection={{ base: 'column', lg: 'row' }}
+      >
           <Box pe="20">
             <NextLink href="/">
               <Box
@@ -91,7 +93,6 @@ const Login: NextPage = () => {
             </Box>
           </Center>
         </Stack>
-      </PageTransition>
     </Section>
   )
 }

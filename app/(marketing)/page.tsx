@@ -17,7 +17,7 @@ import {
   useClipboard,
 } from '@chakra-ui/react'
 import { Br, Link } from '@saas-ui/react'
-import type { Metadata, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Image from 'next/image'
 import {
   FiArrowRight,
@@ -59,10 +59,6 @@ import faq from '#data/faq'
 import pricing from '#data/pricing'
 import testimonials from '#data/testimonials'
 
-export const meta: Metadata = {
-  title: 'Nexumbra Code - Desarrollo de Software y Aplicaciones Web en Chile',
-  description: 'Startup chilena especializada en desarrollo de software y aplicaciones web. Transformamos tus ideas en soluciones digitales innovadoras.',
-}
 
 const Home: NextPage = () => {
   return (
@@ -326,9 +322,9 @@ const HighlightsSection = () => {
         avatar="/static/images/avatar.jpg"
         gradient={['pink.200', 'purple.500']}
       >
-        "Nexumbra Code transformó nuestra idea en una aplicación web funcional 
+        &ldquo;Nexumbra Code transformó nuestra idea en una aplicación web funcional 
         en tiempo récord. Su profesionalismo y dedicación superaron nuestras 
-        expectativas. El equipo entendió perfectamente nuestra visión."
+        expectativas. El equipo entendió perfectamente nuestra visión.&rdquo;
       </HighlightsTestimonialItem>
       <HighlightsItem
         colSpan={[1, null, 2]}
