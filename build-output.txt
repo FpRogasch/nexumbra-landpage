@@ -1,0 +1,28 @@
+
+> nexumbra-code-landing@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.33
+
+   Creating an optimized production build ...
+(node:29700) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./components/features/features.tsx
+49:48  Error: Component definition is missing display name  react/display-name
+79:50  Error: Component definition is missing display name  react/display-name
+
+./components/pricing/pricing.tsx
+37:48  Error: Component definition is missing display name  react/display-name
+
+./components/testimonials/testimonial.tsx
+23:28  Error: Component definition is missing display name  react/display-name
+
+./components/testimonials/testimonials.tsx
+17:58  Error: Component definition is missing display name  react/display-name
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules

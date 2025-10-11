@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { FiCheck } from 'react-icons/fi'
 
-import React from 'react'
+import React, { memo } from 'react'
 
 import {
   ButtonLink,
@@ -34,7 +34,7 @@ export interface PricingProps extends SectionProps {
   plans: Array<PricingPlan>
 }
 
-export const Pricing: React.FC<PricingProps> = (props) => {
+export const Pricing: React.FC<PricingProps> = memo((props) => {
   const { children, plans, title, description, ...rest } = props
 
   return (
@@ -82,7 +82,8 @@ export const Pricing: React.FC<PricingProps> = (props) => {
       </Box>
     </Section>
   )
-}
+})
+Pricing.displayName = 'Pricing'
 
 const PricingFeatures: React.FC<React.PropsWithChildren<{}>> = ({
   children,

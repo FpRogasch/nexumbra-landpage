@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { memo } from 'react'
 import {
   Box,
   Stack,
@@ -45,7 +46,7 @@ export interface FeatureProps {
   delay?: number
 }
 
-export const Feature: React.FC<FeatureProps> = (props) => {
+export const Feature: React.FC<FeatureProps> = memo((props) => {
   const {
     title,
     description,
@@ -73,9 +74,10 @@ export const Feature: React.FC<FeatureProps> = (props) => {
       </Box>
     </Stack>
   )
-}
+})
+Feature.displayName = 'Feature'
 
-export const Features: React.FC<FeaturesProps> = (props) => {
+export const Features: React.FC<FeaturesProps> = memo((props) => {
   const {
     title,
     description,
@@ -124,4 +126,5 @@ export const Features: React.FC<FeaturesProps> = (props) => {
       </Stack>
     </Section>
   )
-}
+})
+Features.displayName = 'Features'

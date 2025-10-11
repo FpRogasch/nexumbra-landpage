@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { ResponsiveValue, SimpleGrid, Stack } from '@chakra-ui/react'
 import {
   Section,
@@ -13,7 +14,7 @@ export interface TestimonialsProps
   columns?: ResponsiveValue<number>
 }
 
-export const Testimonials: React.FC<TestimonialsProps> = (props) => {
+export const Testimonials: React.FC<TestimonialsProps> = memo((props) => {
   const { children, title, columns = [1, null, 2], ...rest } = props
   return (
     <Section {...rest}>
@@ -23,4 +24,5 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
       </SimpleGrid>
     </Section>
   )
-}
+})
+Testimonials.displayName = 'Testimonials'

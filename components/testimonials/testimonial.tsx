@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import {
   Avatar,
   Card,
@@ -19,7 +20,7 @@ export interface TestimonialProps extends CardProps {
   children?: React.ReactNode;
 }
 
-export const Testimonial = ({
+export const Testimonial = memo(({
   name,
   description,
   avatar,
@@ -49,4 +50,5 @@ export const Testimonial = ({
       </CardBody>
     </Card>
   );
-};
+});
+Testimonial.displayName = 'Testimonial'

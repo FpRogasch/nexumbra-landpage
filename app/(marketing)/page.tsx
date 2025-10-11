@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react'
 import { Br, Link } from '@saas-ui/react'
 import type { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import {
   FiArrowRight,
@@ -41,8 +42,6 @@ import {
 import * as React from 'react'
 
 import { ButtonLink } from '#components/button-link/button-link'
-import { Faq } from '#components/faq'
-import { Features } from '#components/features'
 import { BackgroundGradient } from '#components/gradients/background-gradient'
 import { Hero } from '#components/hero'
 import {
@@ -52,12 +51,27 @@ import {
 } from '#components/highlights'
 import { ChakraLogo, NextjsLogo } from '#components/logos'
 import { FallInPlace } from '#components/motion/fall-in-place'
-import { Pricing } from '#components/pricing/pricing'
-import { Testimonial, Testimonials } from '#components/testimonials'
 import { Em } from '#components/typography'
 import faq from '#data/faq'
 import pricing from '#data/pricing'
 import testimonials from '#data/testimonials'
+
+// Lazy load componentes pesados
+const Features = dynamic(() => import('#components/features').then(mod => ({ default: mod.Features })), {
+  ssr: true,
+})
+const Faq = dynamic(() => import('#components/faq').then(mod => ({ default: mod.Faq })), {
+  ssr: true,
+})
+const Pricing = dynamic(() => import('#components/pricing/pricing').then(mod => ({ default: mod.Pricing })), {
+  ssr: true,
+})
+const Testimonials = dynamic(() => import('#components/testimonials').then(mod => ({ default: mod.Testimonials })), {
+  ssr: true,
+})
+const Testimonial = dynamic(() => import('#components/testimonials').then(mod => ({ default: mod.Testimonial })), {
+  ssr: true,
+})
 
 
 const Home: NextPage = () => {
