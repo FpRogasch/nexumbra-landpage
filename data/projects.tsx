@@ -1,0 +1,85 @@
+export default {
+  title: 'Nuestros Proyectos',
+  description: 'Soluciones innovadoras que hemos desarrollado para nuestros clientes',
+  items: [
+    {
+      id: 'fintech-dashboard',
+      title: 'FinTech Dashboard',
+      category: 'Finanzas',
+      description: 'Plataforma de análisis financiero en tiempo real con visualización de datos avanzada.',
+      tags: ['React', 'TypeScript', 'Chart.js', 'Node.js', 'PostgreSQL'],
+      image: '/static/screenshots/dashboard.png',
+      stats: {
+        performance: '98/100',
+        users: '5,000+',
+        uptime: '99.9%',
+      },
+      features: [
+        'Dashboard interactivo con métricas en tiempo real',
+        'Gráficos personalizables y reportes automáticos',
+        'Integración con APIs bancarias',
+        'Sistema de alertas y notificaciones',
+        'Panel de administración completo',
+      ],
+      tech: {
+        frontend: 'React + TypeScript + Tailwind CSS',
+        backend: 'Node.js + Express + PostgreSQL',
+        deployment: 'AWS + Docker + CI/CD',
+      },
+      color: 'cyan',
+    },
+    {
+      id: 'ecommerce-platform',
+      title: 'E-Commerce Multi-vendor',
+      category: 'E-Commerce',
+      description: 'Plataforma marketplace que conecta múltiples vendedores con compradores.',
+      tags: ['Next.js', 'Stripe', 'MongoDB', 'Redis', 'AWS'],
+      image: '/static/screenshots/landingspage.png',
+      stats: {
+        performance: '95/100',
+        transactions: '10,000+',
+        vendors: '200+',
+      },
+      features: [
+        'Sistema de vendedores con dashboard independiente',
+        'Carrito de compras multi-vendor',
+        'Integración con Stripe y Transbank',
+        'Sistema de reviews y ratings',
+        'Búsqueda avanzada con filtros',
+      ],
+      tech: {
+        frontend: 'Next.js 14 + React Server Components',
+        backend: 'Next.js API Routes + MongoDB',
+        deployment: 'Vercel + MongoDB Atlas',
+      },
+      color: 'primary',
+    },
+    {
+      id: 'health-saas',
+      title: 'HealthCare SaaS',
+      category: 'SaaS / Salud',
+      description: 'Sistema de gestión para clínicas y consultorios médicos.',
+      tags: ['React', 'GraphQL', 'Prisma', 'PostgreSQL', 'Docker'],
+      image: '/static/screenshots/billing.png',
+      stats: {
+        performance: '97/100',
+        clinics: '50+',
+        patients: '25,000+',
+      },
+      features: [
+        'Gestión de pacientes y fichas médicas',
+        'Sistema de agendamiento online',
+        'Recetas y prescripciones electrónicas',
+        'Integración con sistemas de facturación',
+        'Reportes y estadísticas detalladas',
+      ],
+      tech: {
+        frontend: 'React + Apollo Client + Material UI',
+        backend: 'GraphQL + Prisma + PostgreSQL',
+        deployment: 'Docker + Kubernetes + AWS',
+      },
+      color: 'green',
+    },
+  ],
+}
+
