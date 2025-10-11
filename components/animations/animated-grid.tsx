@@ -1,9 +1,7 @@
 'use client'
 
 import { Box } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
-
-const MotionBox = motion(Box)
+import { MotionBox } from '#components/motion/box'
 
 export function AnimatedGrid() {
   return (
@@ -52,7 +50,7 @@ export function AnimatedGrid() {
             duration: 3 + Math.random() * 2,
             repeat: Infinity,
             delay: Math.random() * 2,
-          }}
+          } as any}
         />
       ))}
     </Box>

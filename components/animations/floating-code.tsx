@@ -1,10 +1,9 @@
 'use client'
 
 import { Box, Text } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
+import { MotionBox } from '#components/motion/box'
 
-const MotionBox = motion(Box)
-
+// Usamos MotionBox tipado común del proyecto
 const codeSnippets = [
   'const',
   'function',
@@ -50,7 +49,7 @@ export function FloatingCode() {
             duration: 5 + Math.random() * 5,
             repeat: Infinity,
             delay: Math.random() * 5,
-          }}
+          } as any}
         >
           <Text
             fontFamily="monospace"

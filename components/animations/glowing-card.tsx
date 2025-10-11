@@ -3,9 +3,9 @@
 import { Box, BoxProps } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
+import { MotionBox } from '#components/motion/box'
 
-const MotionBox = motion(Box)
-
+// Usamos MotionBox tipado común del proyecto
 interface GlowingCardProps extends BoxProps {
   children: ReactNode
   glowColor?: string

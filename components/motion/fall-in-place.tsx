@@ -14,8 +14,8 @@ export const FallInPlace: React.FC<MotionBoxProps & { delay?: number }> = (
         type: 'tween',
         ease: 'easeOut',
         duration: 2,
-        delay,
-      }}
+        delay: Number(delay),
+      } as any}
       {...rest}
     >
       {children}

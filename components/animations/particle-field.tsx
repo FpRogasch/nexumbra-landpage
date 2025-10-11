@@ -1,9 +1,7 @@
 'use client'
 
 import { Box } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
-
-const MotionBox = motion(Box)
+import { MotionBox } from '#components/motion/box'
 
 export function ParticleField() {
   return (
@@ -35,7 +33,7 @@ export function ParticleField() {
             duration: 10 + Math.random() * 20,
             repeat: Infinity,
             ease: 'linear',
-          }}
+          } as any}
         />
       ))}
     </Box>

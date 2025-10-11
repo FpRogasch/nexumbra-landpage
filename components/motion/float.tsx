@@ -9,14 +9,14 @@ export const Float: React.FC<
     <MotionBox
       animate={{ translateY: steps }}
       transition={{
-        delay,
+        delay: Number(delay),
         duration: 5,
         ease: 'easeInOut',
         times: [0, 0.2, 0.5, 0.8, 1],
         repeat: Infinity,
         repeatDelay: 0,
         repeatType: 'reverse',
-      }}
+      } as any}
       {...rest}
     >
       {children}

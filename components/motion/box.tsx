@@ -1,12 +1,11 @@
 'use client'
 
-import { ChakraProps, chakra } from '@chakra-ui/react'
-import { HTMLMotionProps, motion } from 'framer-motion'
+import { ChakraProps, chakra, shouldForwardProp } from '@chakra-ui/react'
+import { HTMLMotionProps, motion, isValidMotionProp } from 'framer-motion'
 
-export interface MotionBoxProps
-  extends Omit<HTMLMotionProps<'div'>, 'children' | 'style'>,
-    Omit<ChakraProps, 'transition' | 'color'> {
-  children?: React.ReactNode
-}
+export type MotionBoxProps = ChakraProps & HTMLMotionProps<'div'>
 
-export const MotionBox = motion.create(chakra.div)
+// Chakra + Framer Motion integration with proper prop forwarding and types
+export const MotionBox = chakra(motion.div, {
+  shouldForwardProp: (prop) => isValidMotionProp(prop) || shouldForwardProp(prop),
+})

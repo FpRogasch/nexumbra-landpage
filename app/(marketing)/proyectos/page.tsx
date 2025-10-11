@@ -33,8 +33,10 @@ import {
 import { BackgroundGradient } from '#components/gradients/background-gradient'
 import { Section, SectionTitle } from '#components/section'
 import projects from '#data/projects'
+import { MotionBox } from '#components/motion/box'
 
-const MotionBox = motion(Box)
+// Usamos MotionBox tipado para evitar conflictos de tipos con Chakra UI
+// MotionBox ya envuelve a chakra.div con framer-motion en `components/motion/box.tsx`
 
 export default function ProyectosPage() {
   return (
@@ -115,7 +117,7 @@ export default function ProyectosPage() {
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 } as any}
                 viewport={{ once: true }}
               >
                 <ProjectCard project={project} index={index} />
