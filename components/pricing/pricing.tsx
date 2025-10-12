@@ -18,6 +18,7 @@ import {
 } from '#components/button-link/button-link'
 import { BackgroundGradient } from '#components/gradients/background-gradient'
 import { Section, SectionProps, SectionTitle } from '#components/section'
+import { FallInPlace } from '#components/motion/fall-in-place'
 
 export interface PricingPlan {
   id: string
@@ -44,37 +45,38 @@ export const Pricing: React.FC<PricingProps> = memo((props) => {
         <SectionTitle title={title} description={description}></SectionTitle>
 
         <SimpleGrid columns={[1, null, 3]} spacing={4}>
-          {plans?.map((plan) => (
-            <PricingBox
-              key={plan.id}
-              title={plan.title}
-              description={plan.description}
-              price={plan.price}
-              sx={
-                plan.isRecommended
-                  ? {
-                      borderColor: 'primary.500',
-                      _dark: {
+          {plans?.map((plan, index) => (
+            <FallInPlace key={plan.id} delay={index * 0.1}>
+              <PricingBox
+                title={plan.title}
+                description={plan.description}
+                price={plan.price}
+                sx={
+                  plan.isRecommended
+                    ? {
                         borderColor: 'primary.500',
-                        bg: 'blackAlpha.300',
-                      },
-                    }
-                  : {}
-              }
-            >
-              <PricingFeatures>
-                {plan.features.map((feature, i) =>
-                  feature ? (
-                    <PricingFeature key={i} {...feature} />
-                  ) : (
-                    <br key={i} />
-                  ),
-                )}
-              </PricingFeatures>
-              <ButtonLink colorScheme="primary" {...plan.action}>
-                {plan.action.label || 'Comenzar'}
-              </ButtonLink>
-            </PricingBox>
+                        _dark: {
+                          borderColor: 'primary.500',
+                          bg: 'blackAlpha.300',
+                        },
+                      }
+                    : {}
+                }
+              >
+                <PricingFeatures>
+                  {plan.features.map((feature, i) =>
+                    feature ? (
+                      <PricingFeature key={i} {...feature} />
+                    ) : (
+                      <br key={i} />
+                    ),
+                  )}
+                </PricingFeatures>
+                <ButtonLink colorScheme="primary" {...plan.action}>
+                  {plan.action.label || 'Comenzar'}
+                </ButtonLink>
+              </PricingBox>
+            </FallInPlace>
           ))}
         </SimpleGrid>
 

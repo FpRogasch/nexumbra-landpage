@@ -20,6 +20,7 @@ import { RemoveScroll } from 'react-remove-scroll'
 import * as React from 'react'
 
 import { Logo } from '#components/layout/logo'
+import { useScrollSpy } from 'hooks/use-scrollspy'
 import siteConfig from '#data/config'
 
 interface NavLinkProps extends LinkProps {
@@ -32,8 +33,18 @@ function NavLink({ href, children, isActive, ...rest }: NavLinkProps) {
   const pathname = usePathname()
   const bgActiveHoverColor = useColorModeValue('gray.100', 'whiteAlpha.100')
 
-  const [, group] = href?.split('/') || []
-  isActive = isActive ?? pathname?.includes(group)
+  // Lógica corregida para navegación móvil:
+  // - Si se pasa isActive desde el componente padre, usar ese valor
+  // - Si no, aplicar la misma lógica que en el componente de navegación principal
+  if (isActive === undefined) {
+    if (pathname === '/') {
+      // En página principal: solo activo si el href es una sección (#id)
+      isActive = href?.startsWith('/#') ? false : false // Las secciones se manejan por scroll, no por href
+    } else {
+      // En otras páginas: activo solo si el href coincide exactamente con la ruta actual
+      isActive = href === pathname
+    }
+  }
 
   return (
     <Link
@@ -69,8 +80,17 @@ export function MobileNavContent(props: MobileNavContentProps) {
   const pathname = usePathname()
   const bgColor = useColorModeValue('whiteAlpha.900', 'blackAlpha.900')
 
+  // Usar la misma lógica de navegación que el componente principal
+  const activeId = useScrollSpy(
+    siteConfig.header.links
+      .filter(({ id }) => id)
+      .map(({ id }) => `[id="${id}"]`),
+    {
+      threshold: 0.75,
+    },
+  )
+
   useRouteChanged(onClose)
-  console.log({ isOpen })
   /**
    * Scenario: Menu is open on mobile, and user resizes to desktop/tablet viewport.
    * Result: We'll close the menu
@@ -117,10 +137,22 @@ export function MobileNavContent(props: MobileNavContentProps) {
               <Stack alignItems="stretch" spacing="0">
                 {siteConfig.header.links.map(
                   ({ href, id, label, ...props }, i) => {
+                    // Aplicar la misma lógica de navegación activa que el componente principal
+                    let isActive = false
+
+                    if (pathname === '/') {
+                      // En página principal: solo activo si tiene id y coincide con la sección visible
+                      isActive = !!(id && activeId === id)
+                    } else {
+                      // En otras páginas: solo activo si tiene href y coincide exactamente con la ruta actual
+                      isActive = !!(href && pathname === href)
+                    }
+
                     return (
                       <NavLink
                         href={href || `/#${id}`}
                         key={i}
+                        isActive={isActive}
                         {...(props as any)}
                       >
                         {label}

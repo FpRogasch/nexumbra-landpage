@@ -6,6 +6,8 @@ import {
   useMultiStyleConfig,
 } from '@chakra-ui/react'
 
+import { FallInPlace } from '#components/motion/fall-in-place'
+
 export interface SectionTitleProps extends Omit<StackProps, 'title'> {
   title: React.ReactNode
   description?: React.ReactNode
@@ -28,9 +30,11 @@ export const SectionTitle: React.FC<SectionTitleProps> = (props) => {
         {title}
       </Heading>
       {description && (
-        <Box sx={styles.description} textAlign={align}>
-          {description}
-        </Box>
+        <FallInPlace delay={0.2}>
+          <Box sx={styles.description} textAlign={align}>
+            {description}
+          </Box>
+        </FallInPlace>
       )}
     </VStack>
   )

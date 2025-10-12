@@ -18,7 +18,6 @@ import {
 } from '@chakra-ui/react'
 import { Br, Link } from '@saas-ui/react'
 import type { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import {
   FiArrowRight,
@@ -45,6 +44,7 @@ import { useEffect } from 'react'
 import { ButtonLink } from '#components/button-link/button-link'
 import { BackgroundGradient } from '#components/gradients/background-gradient'
 import { Hero } from '#components/hero'
+import { BinaryMouseFollower } from '#components/animations'
 import {
   Highlights,
   HighlightsItem,
@@ -56,23 +56,11 @@ import { Em } from '#components/typography'
 import faq from '#data/faq'
 import pricing from '#data/pricing'
 import testimonials from '#data/testimonials'
-
-// Lazy load componentes pesados
-const Features = dynamic(() => import('#components/features').then(mod => ({ default: mod.Features })), {
-  ssr: true,
-})
-const Faq = dynamic(() => import('#components/faq').then(mod => ({ default: mod.Faq })), {
-  ssr: true,
-})
-const Pricing = dynamic(() => import('#components/pricing/pricing').then(mod => ({ default: mod.Pricing })), {
-  ssr: true,
-})
-const Testimonials = dynamic(() => import('#components/testimonials').then(mod => ({ default: mod.Testimonials })), {
-  ssr: true,
-})
-const Testimonial = dynamic(() => import('#components/testimonials').then(mod => ({ default: mod.Testimonial })), {
-  ssr: true,
-})
+import { Features } from '#components/features'
+import { Faq } from '#components/faq'
+import { Pricing } from '#components/pricing/pricing'
+import { Testimonials } from '#components/testimonials'
+import { Testimonial } from '#components/testimonials'
 
 
 const Home: NextPage = () => {
@@ -94,25 +82,66 @@ const Home: NextPage = () => {
             behavior: 'smooth'
           });
         }
-      }, 300);
+      }, 1000);
 
       return () => clearTimeout(timer);
     }
   }, []);
 
   return (
-    <Box>
+    <Box position="relative">
+      {/* Static Background for entire page */}
+      <BackgroundGradient height="100vh" zIndex="-2" position="fixed" inset={0} />
+      {/* Animated Grid Background */}
+      <Box
+        position="fixed"
+        inset={0}
+        opacity={0.3}
+        pointerEvents="none"
+        backgroundImage="linear-gradient(#8B5CF6 1px, transparent 1px), linear-gradient(90deg, #8B5CF6 1px, transparent 1px)"
+        backgroundSize="50px 50px"
+        zIndex="-1"
+      />
+      {/* Scanning line effect */}
+      <Box
+        position="fixed"
+        width="100%"
+        height="2px"
+        bgGradient="linear(to-r, transparent, cyan.500, transparent)"
+        opacity={0.3}
+        zIndex="-1"
+        sx={{
+          animation: 'scan 3s linear infinite',
+          '@keyframes scan': {
+            '0%': { transform: 'translateX(-100%)' },
+            '100%': { transform: 'translateX(100%)' },
+          },
+        }}
+      />
+      {/* Binary Mouse Follower */}
+      <BinaryMouseFollower />
+
       <HeroSection />
 
-      <FeaturesSection />
+      <FallInPlace delay={0.2}>
+        <FeaturesSection />
+      </FallInPlace>
 
-      <HighlightsSection />
+      <FallInPlace delay={0.4}>
+        <HighlightsSection />
+      </FallInPlace>
 
-      <TestimonialsSection />
+      <FallInPlace delay={0.6}>
+        <TestimonialsSection />
+      </FallInPlace>
 
-      <PricingSection />
+      <FallInPlace delay={0.2}>
+        <PricingSection />
+      </FallInPlace>
 
-      <FaqSection />
+      <FallInPlace delay={0.2}>
+        <FaqSection />
+      </FallInPlace>
     </Box>
   )
 }
@@ -120,120 +149,86 @@ const Home: NextPage = () => {
 const HeroSection: React.FC = () => {
   return (
     <Box position="relative" overflow="hidden">
-      <BackgroundGradient height="100%" zIndex="-1" />
-      {/* Animated Grid Background */}
-      <Box
-        position="absolute"
-        inset={0}
-        opacity={0.3}
-        pointerEvents="none"
-        backgroundImage="linear-gradient(#8B5CF6 1px, transparent 1px), linear-gradient(90deg, #8B5CF6 1px, transparent 1px)"
-        backgroundSize="50px 50px"
-        animation="gridMove 20s linear infinite"
-        sx={{
-          '@keyframes gridMove': {
-            '0%': { transform: 'translate(0, 0)' },
-            '100%': { transform: 'translate(50px, 50px)' },
-          },
-        }}
-      />
-      {/* Scanning line effect */}
-      <Box
-        position="absolute"
-        width="100%"
-        height="2px"
-        bgGradient="linear(to-r, transparent, cyan.500, transparent)"
-        opacity={0.3}
-        animation="scan 4s ease-in-out infinite"
-        sx={{
-          '@keyframes scan': {
-            '0%': { transform: 'translateY(0)' },
-            '100%': { transform: 'translateY(100vh)' },
-          },
-        }}
-      />
       <Container maxW="container.xl" pt={{ base: 40, lg: 60 }} pb="40">
         <Stack direction={{ base: 'column', lg: 'row' }} alignItems="center">
-          <Hero
-            id="home"
-            justifyContent="flex-start"
-            px="0"
-            title={
-              <FallInPlace>
-                <Heading
-                  as="h1"
-                  size="3xl"
-                  bgGradient="linear(to-r, primary.400, cyan.400)"
-                  bgClip="text"
-                  fontWeight="black"
-                  letterSpacing="tight"
-                  sx={{
-                    textShadow: '0 0 40px rgba(139, 92, 246, 0.3)',
-                  }}
-                >
-                  Transformamos tus ideas
-                  <Br /> en soluciones digitales
-                </Heading>
-              </FallInPlace>
-            }
-            description={
-              <FallInPlace delay={0.4} fontWeight="medium">
-                Somos <Em>Nexumbra Code</Em>, una startup chilena especializada
-                <Br /> en desarrollo de software y aplicaciones web. <Br />{' '}
-                Desde landing pages hasta sistemas empresariales complejos.
-              </FallInPlace>
-            }
-          >
-            <FallInPlace delay={0.8}>
-              <HStack pt="4" pb="12" spacing="8">
-                <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
-              </HStack>
+          <FallInPlace delay={0.2}>
+            <Hero
+              id="home"
+              justifyContent="flex-start"
+              px="0"
+              title={
+                  <Heading
+                    as="h1"
+                    size="3xl"
+                    bgGradient="linear(to-r, primary.400, cyan.600)"
+                    bgClip="text"
+                    fontWeight="black"
+                    letterSpacing="tight"
+                    sx={{
+                      textShadow: '0 0 40px rgba(139, 92, 246, 0.3)',
+                    }}
+                  >
+                    Transformamos tus ideas en soluciones digitales
+                  </Heading>
+              }
+              description={
+                <>
+                  Somos <Em>Nexumbra Code</Em>, una startup chilena especializada
+                  en desarrollo de software y aplicaciones web.
+                  <Br />{' '}
+                  Desde landing pages hasta sistemas empresariales complejos.
+                </>
+              }
+            >
+                <HStack pt="4" pb="12" spacing="8">
+                  <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
+                </HStack>
 
-              <ButtonGroup spacing={4} alignItems="center">
-                <ButtonLink
-                  size="lg"
-                  href="/contacto"
-                  bgGradient="linear(to-r, primary.500, cyan.500)"
-                  color="white"
-                  _hover={{
-                    bgGradient: 'linear(to-r, primary.600, cyan.600)',
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 10px 40px rgba(139, 92, 246, 0.4)',
-                  }}
-                  transition="all 0.3s"
-                >
-                  Comenzar Proyecto
-                </ButtonLink>
-                <ButtonLink
-                  size="lg"
-                  href="#planes"
-                  variant="outline"
-                  borderColor="cyan.500"
-                  color="cyan.400"
-                  _hover={{
-                    bg: 'cyan.500',
-                    color: 'white',
-                    transform: 'translateY(-2px)',
-                  }}
-                  transition="all 0.3s"
-                  rightIcon={
-                    <Icon
-                      as={FiArrowRight}
-                      sx={{
-                        transitionProperty: 'common',
-                        transitionDuration: 'normal',
-                        '.chakra-button:hover &': {
-                          transform: 'translate(5px)',
-                        },
-                      }}
-                    />
-                  }
-                >
-                  Ver Planes
-                </ButtonLink>
-              </ButtonGroup>
-            </FallInPlace>
-          </Hero>
+                <ButtonGroup spacing={4} alignItems="center">
+                  <ButtonLink
+                    size="lg"
+                    href="/contacto"
+                    bgGradient="linear(to-r, primary.500, cyan.500)"
+                    color="white"
+                    _hover={{
+                      bgGradient: 'linear(to-r, primary.600, cyan.600)',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 10px 40px rgba(139, 92, 246, 0.4)',
+                    }}
+                    transition="all 0.3s"
+                  >
+                    Comenzar Proyecto
+                  </ButtonLink>
+                  <ButtonLink
+                    size="lg"
+                    href="#planes"
+                    variant="outline"
+                    borderColor="cyan.500"
+                    color="cyan.400"
+                    _hover={{
+                      bg: 'cyan.500',
+                      color: 'white',
+                      transform: 'translateY(-2px)',
+                    }}
+                    transition="all 0.3s"
+                    rightIcon={
+                      <Icon
+                        as={FiArrowRight}
+                        sx={{
+                          transitionProperty: 'common',
+                          transitionDuration: 'normal',
+                          '.chakra-button:hover &': {
+                            transform: 'translate(5px)',
+                          },
+                        }}
+                      />
+                    }
+                  >
+                    Ver Planes
+                  </ButtonLink>
+                </ButtonGroup>
+            </Hero>
+          </FallInPlace>
           <Box
             height="600px"
             position="absolute"
@@ -243,7 +238,7 @@ const HeroSection: React.FC = () => {
             maxW="1100px"
             margin="0 auto"
           >
-            <FallInPlace delay={1}>
+            <FallInPlace delay={0}>
               <Box overflow="hidden" height="100%">
                 <Image
                   src="/static/screenshots/list.png"
@@ -271,7 +266,7 @@ const HeroSection: React.FC = () => {
             icon: FiSmile,
             description: '2 desarrolladores profesionales y 1 diseñador UX/UI dedicados a tu proyecto.',
             iconPosition: 'left',
-            delay: 0.6,
+            delay: 0.4,
           },
           {
             title: 'Tecnología Moderna',
@@ -279,7 +274,7 @@ const HeroSection: React.FC = () => {
             description:
               'Utilizamos React, Next.js, Node.js y las mejores prácticas del mercado.',
             iconPosition: 'left',
-            delay: 0.8,
+            delay: 0.6,
           },
           {
             title: 'Soluciones Escalables',
@@ -287,7 +282,7 @@ const HeroSection: React.FC = () => {
             description:
               'Código limpio y arquitectura sólida que crece con tu negocio.',
             iconPosition: 'left',
-            delay: 1,
+            delay: 0.8,
           },
           {
             title: 'Entrega Ágil',
@@ -295,7 +290,7 @@ const HeroSection: React.FC = () => {
             description:
               'Metodología ágil con entregas iterativas y comunicación constante.',
             iconPosition: 'left',
-            delay: 1.1,
+            delay: 1,
           },
         ]}
         reveal={FallInPlace}
@@ -444,8 +439,8 @@ const FeaturesSection = () => {
         {
           title: 'Frontend Development',
           icon: FiCode,
-          description:
-            'React • Next.js • TypeScript • Responsive Design • PWAs',
+          description: <><Br />
+            React • Next.js • TypeScript • Responsive Design • PWAs</>,
           variant: 'inline',
         },
         {
@@ -542,20 +537,22 @@ const TestimonialsSection = () => {
 
 const PricingSection = () => {
   return (
-    <Pricing {...pricing} id="planes">
-      <Text p="8" textAlign="center" color="muted">
-        Los precios están en pesos chilenos (CLP). Aceptamos transferencias bancarias y emitimos factura electrónica.
-        <br />
-        <ButtonLink href="/proyectos" variant="link" colorScheme="primary" mt={2}>
-          Ver Proyectos Realizados →
-        </ButtonLink>
-      </Text>
-    </Pricing>
+    <FallInPlace delay={0.2}>
+      <Pricing {...pricing} id="planes">
+        <Text p="8" textAlign="center" color="muted">
+          Los precios están en pesos chilenos (CLP). Aceptamos transferencias bancarias y emitimos factura electrónica.
+          <br />
+          <ButtonLink href="/proyectos" variant="link" colorScheme="primary" mt={2}>
+            Ver Proyectos Realizados →
+          </ButtonLink>
+        </Text>
+      </Pricing>
+    </FallInPlace>
   )
 }
 
 const FaqSection = () => {
-  return <Faq {...faq} />
+  return <FallInPlace><Faq {...faq} /></FallInPlace>
 }
 
 export default Home

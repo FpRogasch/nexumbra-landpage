@@ -58,8 +58,8 @@ export default {
         border: '2px solid',
         borderColor: 'purple.800',
         borderRadius: 'lg',
-        px: 6,
-        py: 2,
+        px: 4,
+        py: 0,
         height: 'auto',
         lineHeight: 'normal',
         display: 'inline-flex',
@@ -89,6 +89,9 @@ export default {
         },
         _active: {
           transform: 'translateY(0)',
+          bg: 'cyan.400',
+          borderColor: 'cyan.400',
+          color: 'black',
         },
       }
     },

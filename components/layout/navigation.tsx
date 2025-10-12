@@ -1,7 +1,8 @@
-import { HStack } from '@chakra-ui/react'
+import { HStack, Icon, Flex } from '@chakra-ui/react'
 import { useDisclosure, useUpdateEffect } from '@chakra-ui/react'
 import { useScrollSpy } from 'hooks/use-scrollspy'
 import { usePathname, useRouter } from 'next/navigation'
+import { FiMail, FiThumbsUp, FiTool, FiCreditCard, FiHelpCircle, FiFolder } from 'react-icons/fi'
 
 import * as React from 'react'
 
@@ -16,6 +17,7 @@ const Navigation: React.FC = () => {
   const mobileNav = useDisclosure()
   const router = useRouter()
   const path = usePathname()
+  const [contactoHover, setContactoHover] = React.useState(false)
   const activeId = useScrollSpy(
     siteConfig.header.links
       .filter(({ id }) => id)
@@ -31,24 +33,56 @@ const Navigation: React.FC = () => {
     mobileNavBtnRef.current?.focus()
   }, [mobileNav.isOpen])
 
+  const getIcon = (label: string) => {
+    switch (label) {
+      case 'Servicios':
+        return FiTool
+      case 'Planes':
+        return FiCreditCard
+      case 'FAQ':
+        return FiHelpCircle
+      case 'Proyectos':
+        return FiFolder
+      case 'Contacto':
+        return contactoHover ? FiThumbsUp : FiMail
+      default:
+        return undefined
+    }
+  }
+
   return (
-    <HStack spacing="4" flexShrink={0}>
+    <HStack spacing="4" flexShrink={0} alignItems="center">
       {siteConfig.header.links.map(({ href, id, ...props }, i) => {
-        // Solo mostrar como activo si estamos en la página principal (/) y la sección está visible
-        // O si es un enlace a otra página y estamos en esa página
-        const isActive = path === '/' 
-          ? (id && activeId === id)  // Solo activo por scroll en página principal
-          : (href && path === href)  // Solo activo por coincidencia exacta de ruta
+        // Lógica corregida para navegación activa:
+        // - En página principal (/): Solo secciones con id pueden estar activas por scroll
+        // - En otras páginas: Solo páginas con href pueden estar activas por ruta exacta
+        // - Los enlaces de sección (id sin href) nunca están activos fuera de la página principal
+        let isActive = false
+
+        if (path === '/') {
+          // En página principal: solo activo si tiene id y coincide con la sección visible
+          isActive = !!(id && activeId === id)
+        } else {
+          // En otras páginas: solo activo si tiene href y coincide exactamente con la ruta actual
+          isActive = !!(href && path === href)
+        }
         
+        const icon = getIcon(props.label as string)
         return (
           <NavLink
             display={['none', null, 'block']}
             href={href || `/#${id}`}
             key={i}
             isActive={!!isActive}
+            onMouseEnter={props.label === 'Contacto' ? () => setContactoHover(true) : undefined}
+            transition="all 0.3s"
+            onMouseLeave={props.label === 'Contacto' ? () => setContactoHover(false) : undefined}
             {...props}
           >
-            {props.label}
+            <Flex alignItems="center" gap="2" position="relative">
+              <span>{props.label}</span>
+              {icon && <Icon as={icon} />}
+            </Flex>
           </NavLink>
         )
       })}

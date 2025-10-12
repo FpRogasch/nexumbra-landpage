@@ -1,5 +1,6 @@
 import { chakra, SimpleGrid } from '@chakra-ui/react'
 import { Section, SectionProps, SectionTitle } from 'components/section'
+import { FallInPlace } from '#components/motion/fall-in-place'
 
 interface FaqProps extends Omit<SectionProps, 'title' | 'children'> {
   title?: React.ReactNode
@@ -19,7 +20,11 @@ export const Faq: React.FC<FaqProps> = (props) => {
 
       <SimpleGrid columns={[1, null, 2]} spacingY={10} spacingX="20">
         {items?.map(({ q, a }, i) => {
-          return <FaqItem key={i} question={q} answer={a} />
+          return (
+            <FallInPlace key={i} delay={i * 0.1}>
+              <FaqItem question={q} answer={a} />
+            </FallInPlace>
+          )
         })}
       </SimpleGrid>
     </Section>

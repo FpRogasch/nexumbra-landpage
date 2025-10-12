@@ -5,17 +5,18 @@ import { MotionBox, MotionBoxProps } from './box'
 export const FallInPlace: React.FC<MotionBoxProps & { delay?: number }> = (
   props,
 ) => {
-  const { children, delay = 0.2, ...rest } = props
+  const { children, delay = 0, ...rest } = props
   return (
     <MotionBox
-      initial={{ scale: 1, opacity: 0, translateY: '20px' }}
-      animate={{ scale: 1, opacity: 1, translateY: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        type: 'tween',
-        ease: 'easeOut',
+        type: 'fade',
+        ease: 'easeIn',
         duration: 2,
         delay: Number(delay),
       } as any}
+      suppressHydrationWarning
       {...rest}
     >
       {children}
