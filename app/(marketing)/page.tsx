@@ -157,34 +157,105 @@ const HeroSection: React.FC = () => {
               justifyContent="flex-start"
               px="0"
               title={
-                  <Heading
-                    as="h1"
-                    size="3xl"
-                    bgGradient="linear(to-r, primary.400, cyan.600)"
-                    bgClip="text"
-                    fontWeight="black"
-                    letterSpacing="tight"
-                    sx={{
-                      textShadow: '0 0 40px rgba(139, 92, 246, 0.3)',
-                    }}
-                  >
-                    Transformamos tus ideas en soluciones digitales
-                  </Heading>
+                  <VStack spacing={2} align="flex-start">
+                    <Heading
+                      as="h1"
+                      size="3xl"
+                      bgGradient="linear(to-r, primary.400, cyan.600)"
+                      bgClip="text"
+                      fontWeight="black"
+                      letterSpacing="tight"
+                      fontFamily="mono"
+                      sx={{
+                        textShadow: '0 0 40px rgba(139, 92, 246, 0.3)',
+                        fontVariantLigatures: 'common-ligatures',
+                        fontFeatureSettings: '"liga" 1, "calt" 1',
+                      }}
+                    >
+                      Transformamos tus{' '}
+                      <Text
+                        as="span"
+                        color="cyan.400"
+                        sx={{
+                          animation: 'glow 2s ease-in-out infinite alternate',
+                          '@keyframes glow': {
+                            '0%': { textShadow: '0 0 5px rgba(0, 217, 255, 0.5)' },
+                            '100%': { textShadow: '0 0 20px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 217, 255, 0.6)' },
+                          },
+                        }}
+                      >
+                        {'<'}
+                      </Text>
+                      Ideas
+                      <Text
+                        as="span"
+                        color="cyan.400"
+                        sx={{
+                          animation: 'glow 2s ease-in-out infinite alternate',
+                          '@keyframes glow': {
+                            '0%': { textShadow: '0 0 5px rgba(0, 217, 255, 0.5)' },
+                            '100%': { textShadow: '0 0 20px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6)' },
+                          },
+                        }}
+                      >
+                        {' />'}
+                      </Text>
+                    </Heading>
+                    <Heading
+                      as="h2"
+                      size="xl"
+                      color="gray.600"
+                      _dark={{ color: 'gray.300' }}
+                      fontWeight="medium"
+                      letterSpacing="wide"
+                    >
+                      en soluciones digitales
+                    </Heading>
+                  </VStack>
               }
               description={
                 <>
-                  Somos <Em>Nexumbra Code</Em>, una startup chilena especializada
+                  Somos{' '}
+                  <Text
+                    as="span"
+                    color="primary.400"
+                    sx={{
+                      animation: 'glow 2s ease-in-out infinite alternate',
+                      '@keyframes glow': {
+                        '0%': { textShadow: '0 0 5px rgba(139, 92, 246, 0.5)' },
+                        '100%': { textShadow: '0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(139, 92, 246, 0.6)' },
+                      },
+                    }}
+                  >
+                    Nexumbra
+                  </Text>{' '}
+                  <Text
+                    as="span"
+                    color="cyan.400"
+                    sx={{
+                      animation: 'glow 2s ease-in-out infinite alternate',
+                      '@keyframes glow': {
+                        '0%': { textShadow: '0 0 5px rgba(0, 217, 255, 0.5)' },
+                        '100%': { textShadow: '0 0 20px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 217, 255, 0.6)' },
+                      },
+                    }}
+                  >
+                    Code
+                  </Text>
+                  , una startup chilena especializada
                   en desarrollo de software y aplicaciones web.
                   <Br />{' '}
-                  Desde landing pages hasta sistemas empresariales complejos.
+                  Te ayudaremos a crear herramientas para mejorar tus proyectos y negocios.
                 </>
               }
             >
+                {/*
                 <HStack pt="4" pb="12" spacing="8">
                   <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
                 </HStack>
+                */}
 
-                <ButtonGroup spacing={4} alignItems="center">
+                <ButtonGroup pt="4" pb="12" mt="12" spacing={4} alignItems="center">
                   <ButtonLink
                     size="lg"
                     href="/contacto"
@@ -230,18 +301,18 @@ const HeroSection: React.FC = () => {
             </Hero>
           </FallInPlace>
           <Box
-            height="600px"
+            height="400px"
             position="absolute"
             display={{ base: 'none', lg: 'block' }}
-            left={{ lg: '60%', xl: '55%' }}
-            width="80vw"
-            maxW="1100px"
+            left={{ lg: '65%', xl: '60%' }}
+            width="60vw"
+            maxW="800px"
             margin="0 auto"
           >
             <FallInPlace delay={0}>
               <Box overflow="hidden" height="100%">
                 <Image
-                  src="/static/screenshots/list.png"
+                  src="/static/screenshots/hero-1.png"
                   width={1200}
                   height={762}
                   alt="Screenshot of a ListPage in Saas UI Pro"
