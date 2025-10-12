@@ -24,7 +24,7 @@ export const Header = (props: HeaderProps) => {
     return scrollY.on('change', () => setY(scrollY.get()))
   }, [scrollY])
 
-  const bg = useColorModeValue('whiteAlpha.700', 'rgba(29, 32, 37, 0.7)')
+  const bg = useColorModeValue('rgba(245, 247, 250, 0.8)', 'rgba(29, 32, 37, 0.7)')
 
   return (
     <Box
@@ -43,7 +43,7 @@ export const Header = (props: HeaderProps) => {
       borderBottomWidth={y > height ? '1px' : ''}
       {...props}
     >
-      <Container maxW="container.2xl" px="8" py="4">
+      <Container maxW="container.2xl" px="8" py="2">
         <Flex width="full" align="center" justify="space-between">
           <Logo
             onClick={(e) => {

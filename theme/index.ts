@@ -38,15 +38,28 @@ export const theme = extendTheme(
     },
     styles: {
       global: (props: any) => ({
+        html: {
+          scrollBehavior: 'smooth',
+        },
         body: {
-          color: 'gray.100',
-          bg: '#0a0a0a',
           fontSize: 'lg',
           fontFamily: 'Ubuntu, sans-serif',
+          // Modo claro - Gris muy claro futurista
+          color: 'gray.800',
+          bg: '#F5F7FA',
+          transition: 'background-color 0.3s ease, color 0.3s ease',
           _dark: {
+            // Modo oscuro
             color: 'gray.100',
             bg: '#0a0a0a',
           },
+        },
+        // Ajustes para elementos en modo claro
+        ':root': {
+          '--chakra-colors-gray-50': '#F9FAFB',
+          '--chakra-colors-gray-100': '#F3F4F6',
+          '--chakra-colors-gray-200': '#E5E7EB',
+          '--chakra-colors-gray-300': '#D1D5DB',
         },
       }),
     },

@@ -48,12 +48,45 @@ const Login: NextPage = () => {
       >
           <Box pe="20">
             <NextLink href="/">
-              <Box
-                as={siteConfig.logo}
-                width="160px"
-                ms="4"
-                mb={{ base: 0, lg: 16 }}
-              />
+              {typeof siteConfig.logo === 'string' ? (
+                <Box 
+                  ms="4" 
+                  mb={{ base: 0, lg: 16 }}
+                  display="inline-block"
+                >
+                  <Box
+                    bg="#0F0E09"
+                    px="4"
+                    py="3"
+                    borderRadius="xl"
+                    borderWidth="2px"
+                    borderColor="transparent"
+                    transition="all 0.3s ease"
+                    _hover={{
+                      borderColor: 'cyan.400',
+                      boxShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
+                    }}
+                  >
+                    <img 
+                      src={siteConfig.logo} 
+                      alt="Logo" 
+                      style={{ 
+                        height: '60px',
+                        width: 'auto',
+                        borderRadius: '12px',
+                        objectFit: 'contain'
+                      }} 
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  as={siteConfig.logo}
+                  width="160px"
+                  ms="4"
+                  mb={{ base: 0, lg: 16 }}
+                />
+              )}
             </NextLink>
             <Features
               display={{ base: 'none', lg: 'flex' }}

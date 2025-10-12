@@ -3,10 +3,9 @@ import { Link } from '@saas-ui/react'
 import { NextSeoProps } from 'next-seo'
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 import { FiCheck } from 'react-icons/fi'
-import { Logo } from './logo'
 
 const siteConfig = {
-  logo: Logo,
+  logo: '/static/images/logos/logo.png',
   seo: {
     title: 'Nexumbra Code - Desarrollo de Software y Aplicaciones Web en Chile',
     description: 'Startup chilena especializada en desarrollo de software y aplicaciones web. Desde landing pages simples hasta sistemas complejos para empresas. Equipo profesional de desarrolladores y diseñadores.',
@@ -20,16 +19,16 @@ const siteConfig = {
         label: 'Servicios',
       },
       {
-        label: 'Proyectos',
-        href: '/proyectos',
-      },
-      {
         id: 'planes',
         label: 'Planes',
       },
       {
         id: 'faq',
         label: 'FAQ',
+      },
+      {
+        label: 'Proyectos',
+        href: '/proyectos',
       },
       {
         label: 'Contacto',

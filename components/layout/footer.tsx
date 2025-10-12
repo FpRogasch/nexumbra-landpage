@@ -19,13 +19,40 @@ export interface FooterProps extends BoxProps {
 export const Footer: React.FC<FooterProps> = (props) => {
   const { columns = 2, ...rest } = props
   return (
-    <Box bg="white" _dark={{ bg: 'gray.900' }} {...rest}>
+    <Box bg="#E8EAED" _dark={{ bg: 'gray.900' }} {...rest}>
       <Container maxW="container.2xl" px="8" py="8">
         <SimpleGrid columns={columns}>
           <Stack spacing="8">
             <Stack alignItems="flex-start">
               <Flex>
-                <Box as={siteConfig.logo} flex="1" height="32px" />
+                {typeof siteConfig.logo === 'string' ? (
+                  <Box
+                    bg="#0F0D09"
+                    px="3"
+                    py="2"
+                    borderRadius="xl"
+                    borderWidth="2px"
+                    borderColor="transparent"
+                    transition="all 0.3s ease"
+                    _hover={{
+                      borderColor: 'cyan.400',
+                      boxShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
+                    }}
+                  >
+                    <img 
+                      src={siteConfig.logo} 
+                      alt="Logo" 
+                      style={{ 
+                        height: '40px', 
+                        width: 'auto',
+                        borderRadius: '8px',
+                        objectFit: 'contain'
+                      }} 
+                    />
+                  </Box>
+                ) : (
+                  <Box as={siteConfig.logo} flex="1" height="48px" />
+                )}
               </Flex>
               <Text fontSize="md" color="muted">
                 {siteConfig.seo.description}

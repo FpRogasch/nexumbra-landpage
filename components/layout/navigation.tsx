@@ -32,19 +32,20 @@ const Navigation: React.FC = () => {
   }, [mobileNav.isOpen])
 
   return (
-    <HStack spacing="2" flexShrink={0}>
+    <HStack spacing="4" flexShrink={0}>
       {siteConfig.header.links.map(({ href, id, ...props }, i) => {
+        // Solo mostrar como activo si estamos en la página principal (/) y la sección está visible
+        // O si es un enlace a otra página y estamos en esa página
+        const isActive = path === '/' 
+          ? (id && activeId === id)  // Solo activo por scroll en página principal
+          : (href && path === href)  // Solo activo por coincidencia exacta de ruta
+        
         return (
           <NavLink
             display={['none', null, 'block']}
             href={href || `/#${id}`}
             key={i}
-            isActive={
-              !!(
-                (id && activeId === id) ||
-                (href && !!path?.match(new RegExp(href)))
-              )
-            }
+            isActive={!!isActive}
             {...props}
           >
             {props.label}

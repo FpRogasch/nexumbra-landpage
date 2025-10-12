@@ -40,6 +40,7 @@ import {
 } from 'react-icons/fi'
 
 import * as React from 'react'
+import { useEffect } from 'react'
 
 import { ButtonLink } from '#components/button-link/button-link'
 import { BackgroundGradient } from '#components/gradients/background-gradient'
@@ -75,6 +76,30 @@ const Testimonial = dynamic(() => import('#components/testimonials').then(mod =>
 
 
 const Home: NextPage = () => {
+  // Manejar scroll suave cuando se carga la página con hash
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.replace('#', '');
+      // Esperar a que el DOM esté completamente cargado
+      const timer = setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const headerOffset = 100;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <Box>
       <HeroSection />
