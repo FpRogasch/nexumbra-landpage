@@ -16,7 +16,6 @@ import {
   ButtonLink,
   ButtonLinkProps,
 } from '#components/button-link/button-link'
-import { BackgroundGradient } from '#components/gradients/background-gradient'
 import { Section, SectionProps, SectionTitle } from '#components/section'
 import { FallInPlace } from '#components/motion/fall-in-place'
 
@@ -30,7 +29,8 @@ export interface PricingPlan {
   isRecommended?: boolean
 }
 
-export interface PricingProps extends SectionProps {
+export interface PricingProps extends Omit<SectionProps, 'title'> {
+  title: React.ReactNode
   description: React.ReactNode
   plans: Array<PricingPlan>
 }
@@ -40,7 +40,6 @@ export const Pricing: React.FC<PricingProps> = memo((props) => {
 
   return (
     <Section id="pricing" pos="relative" {...rest}>
-      <BackgroundGradient height="100%" />
       <Box zIndex="2" pos="relative">
         <SectionTitle title={title} description={description}></SectionTitle>
 
