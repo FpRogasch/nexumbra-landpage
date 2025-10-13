@@ -64,8 +64,8 @@ export const theme = extendTheme(
       }),
     },
     fonts: {
-      heading: 'Ubuntu, sans-serif',
-      body: 'Ubuntu, sans-serif',
+      heading: 'var(--font-space-grotesk), sans-serif',
+      body: 'var(--font-ubuntu), sans-serif',
       mono: `'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace`,
     },
     fontSizes,

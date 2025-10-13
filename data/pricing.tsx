@@ -1,7 +1,20 @@
-import { HStack, Text } from '@chakra-ui/react'
+import { HStack, Text, Heading, Box } from '@chakra-ui/react'
+import { Br } from '@saas-ui/react'
 
 export default {
-  title: 'Planes y Precios',
+  title: (
+    <Heading
+      lineHeight="short"
+      fontSize="6xl"
+      textAlign="center"
+      as="p"
+      sx={{
+        textShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
+      }}
+    >
+      Planes y Precios
+    </Heading>
+  ),
   description:
     'Soluciones escalables para cada etapa de tu negocio. Precios competitivos con calidad premium.',
   plans: [

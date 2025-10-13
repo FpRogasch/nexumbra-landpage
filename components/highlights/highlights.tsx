@@ -15,10 +15,12 @@ import { Testimonial, TestimonialProps } from '#components/testimonials'
 
 export interface HighlightBoxProps
   extends GridItemProps,
-    Omit<CardProps, 'title'> {}
+    Omit<CardProps, 'title'> {
+  titleColor?: string;
+}
 
 export const HighlightsItem: React.FC<HighlightBoxProps> = (props) => {
-  const { children, title, ...rest } = props
+  const { children, title, titleColor, ...rest } = props
   return (
     <GridItem
       as={Card}
@@ -34,7 +36,7 @@ export const HighlightsItem: React.FC<HighlightBoxProps> = (props) => {
       {...rest}
     >
       {title && (
-        <Heading fontSize="3xl" mb="8">
+        <Heading fontSize="3xl" mb="8" color={titleColor}>
           {title}
         </Heading>
       )}

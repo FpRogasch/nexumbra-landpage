@@ -69,12 +69,10 @@ export const Feature = {
       mb: 4,
       mr: 4,
       p: 2,
-      bg: mode(
-        'primary.100',
-        transparentize('primary.500', 0.2)(props.theme)
-      )(props),
-      color: mode('primary.700', 'primary.400')(props),
+      bg: mode('cyan.400', 'cyan.500')(props),
+      color: mode('white', 'gray.900')(props),
       float: 'left',
+      boxShadow: mode('0 0 15px rgba(0, 217, 255, 0.4)', '0 0 20px rgba(0, 255, 255, 0.6)')(props),
     },
   }),
   variants: {

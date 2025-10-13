@@ -83,7 +83,7 @@ export const Features: React.FC<FeaturesProps> = memo((props) => {
     description,
     features,
     columns = [1, 2, 3],
-    spacing = 8,
+    spacing = 4,
     align: alignProp = 'center',
     iconSize = 8,
     aside,

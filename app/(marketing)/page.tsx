@@ -15,6 +15,7 @@ import {
   VStack,
   Wrap,
   useClipboard,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { Br, Link } from '@saas-ui/react'
 import type { NextPage } from 'next'
@@ -123,17 +124,17 @@ const Home: NextPage = () => {
 
       <HeroSection />
 
+      <FallInPlace delay={0.4}>
+        <AboutUsSection />
+      </FallInPlace>
+
       <FallInPlace delay={0.2}>
         <FeaturesSection />
       </FallInPlace>
 
-      <FallInPlace delay={0.4}>
-        <HighlightsSection />
-      </FallInPlace>
-
-      <FallInPlace delay={0.6}>
+      {/* <FallInPlace delay={0.6}>
         <TestimonialsSection />
-      </FallInPlace>
+      </FallInPlace> */}
 
       <FallInPlace delay={0.2}>
         <PricingSection />
@@ -147,6 +148,12 @@ const Home: NextPage = () => {
 }
 
 const HeroSection: React.FC = () => {
+  const borderColor = useColorModeValue('cyan.600', 'cyan.500')
+  const color = useColorModeValue('cyan.700', 'cyan.400')
+  const bg = useColorModeValue('cyan.50', 'transparent')
+  const hoverBg = useColorModeValue('cyan.500', 'cyan.500')
+  const hoverColor = useColorModeValue('white', 'white')
+
   return (
     <Box position="relative" overflow="hidden">
       <Container maxW="container.xl" pt={{ base: 40, lg: 60 }} pb="40">
@@ -165,11 +172,11 @@ const HeroSection: React.FC = () => {
                       bgClip="text"
                       fontWeight="black"
                       letterSpacing="tight"
-                      fontFamily="mono"
                       sx={{
                         textShadow: '0 0 40px rgba(139, 92, 246, 0.3)',
                         fontVariantLigatures: 'common-ligatures',
                         fontFeatureSettings: '"liga" 1, "calt" 1',
+                        fontFamily: 'Rajdhani, sans-serif',
                       }}
                     >
                       Transformamos tus{' '}
@@ -274,12 +281,15 @@ const HeroSection: React.FC = () => {
                     size="lg"
                     href="#planes"
                     variant="outline"
-                    borderColor="cyan.500"
-                    color="cyan.400"
+                    borderColor={borderColor}
+                    color={color}
+                    bg={bg}
                     _hover={{
-                      bg: 'cyan.500',
-                      color: 'white',
+                      bg: hoverBg,
+                      color: hoverColor,
                       transform: 'translateY(-2px)',
+                      borderColor: 'cyan.500',
+                      boxShadow: '0 0 15px rgba(0, 255, 255, 0.4)',
                     }}
                     transition="all 0.3s"
                     rightIcon={
@@ -301,18 +311,18 @@ const HeroSection: React.FC = () => {
             </Hero>
           </FallInPlace>
           <Box
-            height="400px"
+            height="650px"
             position="absolute"
             display={{ base: 'none', lg: 'block' }}
-            left={{ lg: '65%', xl: '60%' }}
-            width="60vw"
-            maxW="800px"
+            left={{ lg: '55%', xl: '50%' }}
+            width="70vw"
+            maxW="1100px"
             margin="0 auto"
           >
             <FallInPlace delay={0}>
-              <Box overflow="hidden" height="100%">
+              <Box overflow="hidden" height="100%" borderRadius="lg" boxShadow="0 0 30px rgba(25, 255, 255, 0.9)">
                 <Image
-                  src="/static/screenshots/hero-1.png"
+                  src="/static/screenshots/hero-2.png"
                   width={1200}
                   height={762}
                   alt="Screenshot of a ListPage in Saas UI Pro"
@@ -328,40 +338,40 @@ const HeroSection: React.FC = () => {
       <Features
         id="benefits"
         columns={[1, 2, 4]}
-        iconSize={4}
+        iconSize={5}
         innerWidth="container.xl"
-        pt="20"
+        pt="16"
         features={[
           {
-            title: 'Equipo Experto',
+            title: 'Profesionales con Pasión',
             icon: FiSmile,
-            description: '2 desarrolladores profesionales y 1 diseñador UX/UI dedicados a tu proyecto.',
+            description: 'Nuestro equipo de 3 profesionales apasionados por la tecnología combina experiencia técnica con creatividad para transformar tus ideas en realidad.',
             iconPosition: 'left',
-            delay: 0.4,
+            delay: 0.5,
           },
           {
             title: 'Tecnología Moderna',
             icon: FiSliders,
             description:
-              'Utilizamos React, Next.js, Node.js y las mejores prácticas del mercado.',
+              'Utilizamos React, Next.js, Node.js y las mejores prácticas del mercado para crear soluciones robustas y eficientes.',
             iconPosition: 'left',
-            delay: 0.6,
+            delay: 0.7,
           },
           {
             title: 'Soluciones Escalables',
             icon: FiGrid,
             description:
-              'Código limpio y arquitectura sólida que crece con tu negocio.',
+              'Desarrollamos código limpio y arquitectura sólida que crece con tu negocio, asegurando un rendimiento óptimo a largo plazo.',
             iconPosition: 'left',
-            delay: 0.8,
+            delay: 0.9,
           },
           {
-            title: 'Entrega Ágil',
+            title: 'Trabajo Codo a Codo',
             icon: FiThumbsUp,
             description:
-              'Metodología ágil con entregas iterativas y comunicación constante.',
+              'Trabajamos estrechamente contigo en cada etapa del proyecto, manteniendo una comunicación constante y adaptándonos a tus necesidades.',
             iconPosition: 'left',
-            delay: 1,
+            delay: 1.1,
           },
         ]}
         reveal={FallInPlace}
@@ -370,20 +380,33 @@ const HeroSection: React.FC = () => {
   )
 }
 
-const HighlightsSection = () => {
+const AboutUsSection = () => {
   const { value, onCopy, hasCopied } = useClipboard('contacto@nexumbra.cl')
 
   return (
     <Highlights>
-      <HighlightsItem colSpan={[1, null, 2]} title="Stack Tecnológico Profesional">
-        <VStack alignItems="flex-start" spacing="8">
-          <Text color="muted" fontSize="xl">
-            Utilizamos las <Em>tecnologías más demandadas del mercado</Em>.
-            React, Next.js, TypeScript para el frontend. Node.js, PostgreSQL, MongoDB
-            para el backend. Todo con las mejores prácticas y código de calidad.
-          </Text>
-
-          <Flex
+      <HighlightsItem colSpan={[1, null, 2]} title="Sobre Nosotros" titleColor="cyan.400">
+        <Text color="muted" fontSize="lg">
+          Somos 2 hermanos apasionados por el desarrollo de aplicaciones web,
+          con el compromiso de ayudar a empresas y emprendimientos a crear
+          sistemas innovadores que impulsen el crecimiento de sus negocios.
+          Nuestra experiencia técnica, creatividad y dedicación nos permiten
+          transformar ideas visionarias en soluciones digitales de alto impacto
+          que generan resultados reales y duraderos.
+          <Br /><Br />
+          Nos enfocamos en guiar a nuestros clientes hacia las mejores tecnologías
+          disponibles, asegurando que cada proyecto sea construido con las herramientas
+          más adecuadas para sus necesidades específicas. Trabajamos con nuestro propio
+          código de calidad y, aunque podemos implementar soluciones en plataformas
+          como WordPress, siempre garantizamos que el cliente mantenga el control
+          total sobre sus servicios y código fuente. Esta libertad significa que
+          nunca quedarán &ldquo;atados&rdquo; a nosotros: una vez terminado el proyecto,
+          tienen la opción de que nosotros continuemos con el mantenimiento, o pueden
+          elegir que otras entidades se encarguen de los servicios y el sitio web.
+          De cualquier manera, el cliente siempre mantiene la propiedad completa
+          de su proyecto.
+        </Text>
+        <Flex
             rounded="full"
             borderWidth="1px"
             flexDirection="row"
@@ -392,11 +415,12 @@ const HighlightsSection = () => {
             ps="8"
             pe="2"
             bg="primary.900"
+            mt="20"
             _dark={{ bg: 'gray.900' }}
           >
             <Box>
               <Text color="yellow.400" display="inline">
-                contacto:
+                Trabajemos juntos:
               </Text>{' '}
               <Text color="cyan.300" display="inline">
                 contacto@nexumbra.cl
@@ -412,170 +436,284 @@ const HighlightsSection = () => {
               color="white"
             />
           </Flex>
-        </VStack>
       </HighlightsItem>
-      <HighlightsItem title="Equipo Chileno Profesional">
-        <Text color="muted" fontSize="lg">
-          Somos 3 profesionales apasionados por la tecnología: 2 desarrolladores
-          expertos en informática y 1 diseñador especializado en UX/UI. Trabajamos
-          unidos para crear soluciones digitales de alto impacto.
-        </Text>
-      </HighlightsItem>
-      <HighlightsTestimonialItem
-        name="María Fernanda González"
-        description="CEO, TechStart Chile"
-        avatar="/static/images/avatar.jpg"
-        gradient={['pink.200', 'purple.500']}
-      >
-        &ldquo;Nexumbra Code transformó nuestra idea en una aplicación web funcional 
-        en tiempo récord. Su profesionalismo y dedicación superaron nuestras 
-        expectativas. El equipo entendió perfectamente nuestra visión.&rdquo;
-      </HighlightsTestimonialItem>
-      <HighlightsItem
-        colSpan={[1, null, 2]}
-        title="Soluciones completas de principio a fin"
-      >
-        <VStack alignItems="flex-start" spacing="4">
+      <HighlightsItem title="Stack Tecnológico Profesional" titleColor="cyan.400">
+        <VStack alignItems="flex-start" spacing="8">
           <Text color="muted" fontSize="lg">
-            Nos encargamos de todo el proceso de desarrollo, desde la idea inicial
-            hasta el despliegue y mantenimiento. Tú enfócate en tu negocio.
+            Utilizamos las <Em><b>tecnologías más demandadas del mercado</b></Em> con
+            arquitectura limpia y mejores prácticas para garantizar soluciones robustas y escalables.
           </Text>
-          <ButtonLink href="/proyectos" colorScheme="primary" size="md">
-            Ver Nuestros Proyectos
-          </ButtonLink>
+
+          <VStack spacing={4} alignItems="flex-start" w="full">
+            <Text fontSize="lg" fontWeight="semibold" color="purple.400">
+              Frontend
+            </Text>
+            <Wrap spacing={3}>
+              {[
+                { name: 'React', color: 'gray.800' },
+                { name: 'Next.js', color: 'gray.800' },
+                { name: 'TypeScript', color: 'gray.800' },
+                { name: 'Tailwind CSS', color: 'gray.800' },
+              ].map((tech) => (
+                <Tag
+                  key={tech.name}
+                  size="lg"
+                  variant="solid"
+                  bg={tech.color}
+                  color="white"
+                  px={4}
+                  py={2}
+                  borderRadius="full"
+                  boxShadow="0 0 10px rgb(255, 255, 255, 0.5)"
+                  _hover={{
+                    transform: 'scale(1.05)',
+                  }}
+                  transition="all 0.2s"
+                >
+                  {tech.name}
+                </Tag>
+              ))}
+            </Wrap>
+
+            <Text fontSize="lg" fontWeight="semibold" color="purple.400">
+              Backend
+            </Text>
+            <Wrap spacing={3}>
+              {[
+                { name: 'NestJS', color: 'gray.800' },
+                { name: 'Node.js', color: 'gray.800' },
+                { name: 'Express', color: 'gray.800' },
+                { name: 'Clean Architecture', color: 'gray.800' },
+              ].map((tech) => (
+                <Tag
+                  key={tech.name}
+                  size="lg"
+                  variant="solid"
+                  bg={tech.color}
+                  color="white"
+                  px={4}
+                  py={2}
+                  borderRadius="full"
+                  boxShadow="0 0 10px rgb(255, 255, 255, 0.5)"
+                  _hover={{
+                    transform: 'scale(1.05)',
+                  }}
+                  transition="all 0.2s"
+                >
+                  {tech.name}
+                </Tag>
+              ))}
+            </Wrap>
+
+            <Text fontSize="lg" fontWeight="semibold" color="purple.400">
+              Base de Datos
+            </Text>
+            <Wrap spacing={3}>
+              {[
+                { name: 'PostgreSQL', color: 'gray.800' },
+                { name: 'MongoDB', color: 'gray.800' },
+              ].map((tech) => (
+                <Tag
+                  key={tech.name}
+                  size="lg"
+                  variant="solid"
+                  bg={tech.color}
+                  color="white"
+                  px={4}
+                  py={2}
+                  borderRadius="full"
+                  boxShadow="0 0 10px rgb(255, 255, 255, 0.5)"
+                  _hover={{
+                    transform: 'scale(1.05)',
+                  }}
+                  transition="all 0.2s"
+                >
+                  {tech.name}
+                </Tag>
+              ))}
+            </Wrap>
+          </VStack>
         </VStack>
-        <Wrap mt="8">
-          {[
-            'landing pages',
-            'sitios web',
-            'e-commerce',
-            'aplicaciones web',
-            'sistemas empresariales',
-            'APIs REST',
-            'bases de datos',
-            'diseño UX/UI',
-            'responsive design',
-            'SEO optimización',
-            'hosting',
-            'mantenimiento',
-            'integraciones',
-            'dashboards',
-            'autenticación',
-            'reportes',
-            'analytics',
-            'soporte continuo',
-          ].map((value) => (
-            <Tag
-              key={value}
-              variant="subtle"
-              colorScheme="purple"
-              rounded="full"
-              px="3"
-            >
-              {value}
-            </Tag>
-          ))}
-        </Wrap>
       </HighlightsItem>
+      
+
+      
+
+
+      
     </Highlights>
   )
 }
 
 const FeaturesSection = () => {
   return (
-    <Features
-      id="servicios"
-      title={
-        <Heading
-          lineHeight="short"
-          fontSize={['2xl', null, '4xl']}
-          textAlign="left"
-          as="p"
+    <>
+      <Features
+        id="servicios"
+        title={
+          <Heading
+            lineHeight="short"
+            fontSize="6xl"
+            textAlign="left"
+            as="p"
+            sx={{
+              textShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
+            }}
+          >
+            Nuestros Servicios
+            <Br /> de Desarrollo
+          </Heading>
+        }
+        description={
+          <>
+            Ofrecemos soluciones completas de software para empresas y emprendedores.
+            <Br />
+            Desde proyectos simples hasta sistemas complejos, nos adaptamos a tus necesidades.
+          </>
+        }
+        align="left"
+        columns={[1, 2, 3]}
+        iconSize={4}
+        mb="-28"
+        mt="-8"
+        features={[
+          {
+            title: 'Frontend Development',
+            icon: FiCode,
+            description: <><Br />
+              React • Next.js • TypeScript • Responsive Design • PWAs</>,
+            variant: 'inline',
+          },
+          {
+            title: 'Backend & APIs',
+            icon: FiTerminal,
+            description: <><Br />
+              Node.js • Express • REST APIs • GraphQL • Microservicios</>,
+            variant: 'inline',
+          },
+          {
+            title: 'Bases de Datos',
+            icon: FiBox,
+            description: <><Br />
+              PostgreSQL • MongoDB • Redis • Prisma ORM • Optimización</>,
+            variant: 'inline',
+          },
+          {
+            title: 'UX/UI Design',
+            icon: FiUserPlus,
+            description: <><Br />
+              Figma • Prototipos • Wireframes • Design Systems • Usabilidad</>,
+            variant: 'inline',
+          },
+          {
+            title: 'E-Commerce',
+            icon: FiSearch,
+            description: <><Br />
+              Shopify • WooCommerce • Custom Solutions • Pasarelas de Pago</>,
+            variant: 'inline',
+          },
+          {
+            title: 'Cloud & DevOps',
+            icon: FiLock,
+            description: <><Br />
+              AWS • Vercel • Docker • CI/CD • Monitoreo • Seguridad</>,
+            variant: 'inline',
+          },
+          {
+            title: 'Mobile Development',
+            icon: FiToggleLeft,
+            description: <><Br />
+              React Native • Flutter • iOS • Android • Cross-platform</>,
+            variant: 'inline',
+          },
+          {
+            title: 'Testing & QA',
+            icon: FiTrendingUp,
+            description: <><Br />
+              Jest • Cypress • Unit Testing • Integration Tests • E2E</>,
+            variant: 'inline',
+          },
+          {
+            title: 'Consultoría Tech',
+            icon: FiFlag,
+            description: <><Br />
+              Arquitectura • Code Review • Tech Stack • Optimización • Auditoría</>,
+            variant: 'inline',
+          },
+        ]}
+      />
+
+      <Highlights>
+        <Box
+          borderRadius="lg"
+          overflow="hidden"
+          height="395px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          boxShadow="0 0 30px rgba(139, 92, 246, 0.4)"
         >
-          Nuestros Servicios
-          <Br /> de Desarrollo
-        </Heading>
-      }
-      description={
-        <>
-          Ofrecemos soluciones completas de software para empresas y emprendedores.
-          <Br />
-          Desde proyectos simples hasta sistemas complejos, nos adaptamos a tus necesidades.
-        </>
-      }
-      align="left"
-      columns={[1, 2, 3]}
-      iconSize={4}
-      features={[
-        {
-          title: 'Frontend Development',
-          icon: FiCode,
-          description: <><Br />
-            React • Next.js • TypeScript • Responsive Design • PWAs</>,
-          variant: 'inline',
-        },
-        {
-          title: 'Backend & APIs',
-          icon: FiTerminal,
-          description:
-            'Node.js • Express • REST APIs • GraphQL • Microservicios',
-          variant: 'inline',
-        },
-        {
-          title: 'Bases de Datos',
-          icon: FiBox,
-          description:
-            'PostgreSQL • MongoDB • Redis • Prisma ORM • Optimización',
-          variant: 'inline',
-        },
-        {
-          title: 'UX/UI Design',
-          icon: FiUserPlus,
-          description:
-            'Figma • Prototipos • Wireframes • Design Systems • Usabilidad',
-          variant: 'inline',
-        },
-        {
-          title: 'E-Commerce',
-          icon: FiSearch,
-          description:
-            'Shopify • WooCommerce • Custom Solutions • Pasarelas de Pago',
-          variant: 'inline',
-        },
-        {
-          title: 'Cloud & DevOps',
-          icon: FiLock,
-          description:
-            'AWS • Vercel • Docker • CI/CD • Monitoreo • Seguridad',
-          variant: 'inline',
-        },
-        {
-          title: 'Mobile Development',
-          icon: FiToggleLeft,
-          description:
-            'React Native • Flutter • iOS • Android • Cross-platform',
-          variant: 'inline',
-        },
-        {
-          title: 'Testing & QA',
-          icon: FiTrendingUp,
-          description:
-            'Jest • Cypress • Unit Testing • Integration Tests • E2E',
-          variant: 'inline',
-        },
-        {
-          title: 'Consultoría Tech',
-          icon: FiFlag,
-          description:
-            'Arquitectura • Code Review • Tech Stack • Optimización • Auditoría',
-          variant: 'inline',
-        },
-      ]}
-    />
+          <Image
+            src="/static/screenshots/section-01.png"
+            alt="Dashboard screenshot"
+            width={432}
+            height={432}
+            style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+          />
+        </Box>
+        <HighlightsItem
+          colSpan={[1, null, 2]}
+          title="Soluciones completas de principio a fin"
+          boxShadow="0 0 30px rgba(139, 92, 246, 0.4)"
+        >
+          <VStack alignItems="flex-start" spacing="4">
+            <Text color="muted" fontSize="lg">
+              Nos encargamos de todo el proceso de desarrollo, desde la idea inicial
+              hasta el despliegue y mantenimiento. Tú enfócate en tu negocio.
+            </Text>
+            <ButtonLink href="/proyectos" colorScheme="primary" size="md">
+              Ver Nuestros Proyectos
+            </ButtonLink>
+          </VStack>
+          <Wrap mt="8">
+            {[
+              'landing pages',
+              'sitios web',
+              'e-commerce',
+              'aplicaciones web',
+              'sistemas empresariales',
+              'APIs REST',
+              'bases de datos',
+              'diseño UX/UI',
+              'responsive design',
+              'SEO optimización',
+              'hosting',
+              'mantenimiento',
+              'integraciones',
+              'dashboards',
+              'autenticación',
+              'reportes',
+              'analytics',
+              'soporte continuo',
+            ].map((value) => (
+              <Tag
+                key={value}
+                variant="subtle"
+                colorScheme="purple"
+                rounded="full"
+                px="3"
+              >
+                {value}
+              </Tag>
+            ))}
+          </Wrap>
+        </HighlightsItem>
+      </Highlights>
+    </>
   )
 }
 
-const TestimonialsSection = () => {
+/* const TestimonialsSection = () => {
   const columns = React.useMemo(() => {
     return testimonials.items.reduce<Array<typeof testimonials.items>>(
       (columns, t, i) => {
@@ -604,7 +742,7 @@ const TestimonialsSection = () => {
       </>
     </Testimonials>
   )
-}
+} */
 
 const PricingSection = () => {
   return (

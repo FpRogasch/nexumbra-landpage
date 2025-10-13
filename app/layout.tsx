@@ -1,5 +1,5 @@
 import { ColorModeScript, theme } from '@chakra-ui/react'
-import { Ubuntu } from 'next/font/google'
+import { Ubuntu, Space_Grotesk } from 'next/font/google'
 
 import { Provider } from './provider'
 
@@ -7,13 +7,21 @@ const ubuntu = Ubuntu({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
   display: 'swap',
+  variable: '--font-ubuntu',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-space-grotesk',
 })
 
 export default function Layout(props: { children: React.ReactNode }) {
   const colorMode = theme.config.initialColorMode
 
   return (
-    <html lang="es" data-theme={colorMode} style={{ colorScheme: colorMode }} className={ubuntu.className}>
+    <html lang="es" data-theme={colorMode} style={{ colorScheme: colorMode }} className={`${ubuntu.variable} ${spaceGrotesk.variable}`}>
       <head>
         <link
           rel="apple-touch-icon"
@@ -34,7 +42,7 @@ export default function Layout(props: { children: React.ReactNode }) {
         />
         <link rel="manifest" href="/static/favicons/manifest.json" />
       </head>
-      <body className={`chakra-ui-${colorMode} ${ubuntu.className}`}>
+      <body className={`chakra-ui-${colorMode} ${ubuntu.variable} ${spaceGrotesk.variable}`}>
         <ColorModeScript initialColorMode={colorMode} />
         <Provider>{props.children}</Provider>
       </body>
