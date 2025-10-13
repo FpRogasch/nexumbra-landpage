@@ -9,7 +9,7 @@ export default {
       textAlign="center"
       as="p"
       sx={{
-        textShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
+        textShadow: '0 0 50px rgba(0, 255, 255, 0.95)',
       }}
     >
       Planes y Precios

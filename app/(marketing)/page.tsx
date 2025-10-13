@@ -45,7 +45,7 @@ import { useEffect } from 'react'
 import { ButtonLink } from '#components/button-link/button-link'
 import { BackgroundGradient } from '#components/gradients/background-gradient'
 import { Hero } from '#components/hero'
-import { BinaryMouseFollower } from '#components/animations'
+import { BinaryMouseFollower, EdgeCodeRain } from '#components/animations'
 import {
   Highlights,
   HighlightsItem,
@@ -121,6 +121,9 @@ const Home: NextPage = () => {
       />
       {/* Binary Mouse Follower */}
       <BinaryMouseFollower />
+      
+      {/* Edge Code Rain Animation */}
+      <EdgeCodeRain position="both" width={125} />
 
       <HeroSection />
 
@@ -557,7 +560,7 @@ const FeaturesSection = () => {
             textAlign="left"
             as="p"
             sx={{
-              textShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
+              textShadow: '0 0 50px rgba(0, 255, 255, 0.95)',
             }}
           >
             Nuestros Servicios
