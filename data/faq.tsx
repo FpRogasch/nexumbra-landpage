@@ -1,7 +1,20 @@
 import * as React from 'react'
+import { Heading } from '@chakra-ui/react'
 
 const faq = {
-  title: 'Preguntas Frecuentes',
+  title: (
+    <Heading
+      lineHeight="short"
+      fontSize="6xl"
+      textAlign="left"
+      as="p"
+      sx={{
+        textShadow: '0 0 50px rgba(0, 255, 255, 0.95)',
+      }}
+    >
+      Preguntas Frecuentes
+    </Heading>
+  ),
   description: 'Todo lo que necesitas saber sobre nuestros servicios',
   items: [
     {

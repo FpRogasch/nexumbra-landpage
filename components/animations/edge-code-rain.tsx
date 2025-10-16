@@ -11,11 +11,15 @@ interface EdgeCodeRainProps {
 export function EdgeCodeRain({ position = 'both', width = 100 }: EdgeCodeRainProps) {
   const [columns, setColumns] = useState<number[]>([])
   const [windowWidth, setWindowWidth] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
   
   // Caracteres relacionados con programación y tecnología
   const chars = '0123456789ABCDEF<>{}[]();constletvarfunctionifelseforwhileimportexportreturnclassinterfaceextendsimplements</>{}[]();'
   
   useEffect(() => {
+    // Marcar que el componente está montado en el cliente
+    setIsMounted(true)
+    
     const updateColumns = () => {
       const ww = window.innerWidth
       setWindowWidth(ww)
@@ -33,6 +37,11 @@ export function EdgeCodeRain({ position = 'both', width = 100 }: EdgeCodeRainPro
   }, [width])
 
   const generateRandomCode = () => {
+    // Solo generar código aleatorio si el componente está montado
+    if (!isMounted) {
+      return 'Loading...'
+    }
+    
     const codeSnippets = [
       // Variables y funciones básicas
       'const user = {', 'let data = []', 'var config = {}', 'function handleClick()', 'if (isLoading)', 'else return null', 'for (let i = 0)', 'while (condition)',
@@ -76,7 +85,8 @@ export function EdgeCodeRain({ position = 'both', width = 100 }: EdgeCodeRainPro
   }
 
   const renderColumn = (col: number, side: 'left' | 'right', isSecond = false, instance = 0, columnWidth?: number) => {
-    const columnChars = 30 + Math.floor(Math.random() * 25) // 30-55 caracteres por columna (aún más texto para continuidad)
+    // Usar valores consistentes cuando no está montado para evitar errores de hidratación
+    const columnChars = isMounted ? 30 + Math.floor(Math.random() * 25) : 40 // 30-55 caracteres por columna (aún más texto para continuidad)
     const actualColumnWidth = columnWidth || (width / 2) // Usar el ancho pasado o calcularlo
     
     return (
@@ -86,8 +96,8 @@ export function EdgeCodeRain({ position = 'both', width = 100 }: EdgeCodeRainPro
         left={`${col * actualColumnWidth}px`}
         top={-20}
         sx={{
-          animation: `fall${side} ${12 + Math.random() * 16}s linear infinite`, // Velocidad reducida a la mitad (12-28s)
-          animationDelay: `${instance * 0.4 + Math.random() * 0.6}s`, // Delays escalonados para mayor frecuencia
+          animation: `fall${side} ${isMounted ? 12 + Math.random() * 16 : 20}s linear infinite`, // Velocidad reducida a la mitad (12-28s)
+          animationDelay: `${isMounted ? instance * 0.4 + Math.random() * 0.6 : instance * 0.5}s`, // Delays escalonados para mayor frecuencia
           [`@keyframes fall${side}`]: {
             '0%': { 
               transform: 'translateY(-120vh)', // Empezar más arriba
@@ -108,18 +118,21 @@ export function EdgeCodeRain({ position = 'both', width = 100 }: EdgeCodeRainPro
       >
         {[...Array(columnChars)].map((_, i) => {
           const isLeading = i === 0
-          const isCode = Math.random() > 0.15 // 85% chance de mostrar código real (más continuidad)
+          // Usar valores consistentes cuando no está montado
+          const isCode = isMounted ? Math.random() > 0.15 : true // 85% chance de mostrar código real (más continuidad)
+          const shouldBeCyan = isLeading || (isMounted ? Math.random() > 0.6 : i % 3 === 0)
+          const shouldHaveGlow = isLeading || (isMounted ? Math.random() > 0.6 : i % 4 === 0)
           
           return (
             <Text
               key={i}
-              color={isLeading || Math.random() > 0.6 ? 'cyan.400' : 'primary.500'} // 40% más cyan (60% de probabilidad)
+              color={shouldBeCyan ? 'cyan.400' : 'primary.500'} // 40% más cyan (60% de probabilidad)
               fontSize="13px" // Texto ligeramente más grande
               fontFamily="monospace"
               opacity={isLeading ? 1 : Math.max(0.3, 0.9 - i * 0.04)} // Más visible (0.3 en lugar de 0.1)
               mb={0.5}
               fontWeight={isLeading ? 'bold' : 'normal'}
-              textShadow={isLeading || Math.random() > 0.6 ? '0 0 12px rgba(0, 217, 255, 0.8)' : '0 0 4px rgba(139, 92, 246, 0.3)'} // Brillo cyan más frecuente
+              textShadow={shouldHaveGlow ? '0 0 12px rgba(0, 217, 255, 0.8)' : '0 0 4px rgba(139, 92, 246, 0.3)'} // Brillo cyan más frecuente
               sx={{
                 transition: 'opacity 0.1s ease',
                 '&:hover': {
@@ -136,7 +149,8 @@ export function EdgeCodeRain({ position = 'both', width = 100 }: EdgeCodeRainPro
   }
 
   const renderSide = (side: 'left' | 'right') => {
-    const randomWidth = 100 + Math.floor(Math.random() * 51) // 100-150px aleatorio
+    // Usar valores consistentes cuando no está montado para evitar errores de hidratación
+    const randomWidth = isMounted ? 100 + Math.floor(Math.random() * 51) : 125 // 100-150px aleatorio
     const localColumns = 2 // Siempre 2 columnas
     const columnWidth = randomWidth / localColumns // Ancho por columna
     

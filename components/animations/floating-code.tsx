@@ -1,6 +1,7 @@
 'use client'
 
 import { Box, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { MotionBox } from '#components/motion/box'
 
 // Usamos MotionBox tipado común del proyecto
@@ -26,6 +27,18 @@ const codeSnippets = [
 ]
 
 export function FloatingCode() {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    // Marcar que estamos en el cliente para evitar errores de hidratación
+    setIsClient(true)
+  }, [])
+
+  // No renderizar nada en el servidor para evitar errores de hidratación
+  if (!isClient) {
+    return null
+  }
+
   return (
     <Box
       position="absolute"

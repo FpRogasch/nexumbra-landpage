@@ -5,12 +5,21 @@ import { useEffect, useState } from 'react'
 
 export function CodeRain() {
   const [columns, setColumns] = useState<number[]>([])
+  const [isClient, setIsClient] = useState(false)
   const chars = '0123456789ABCDEF</>{}[]();'
 
   useEffect(() => {
+    // Marcar que estamos en el cliente para evitar errores de hidratación
+    setIsClient(true)
+    
     const cols = Math.floor(window.innerWidth / 20)
     setColumns(Array.from({ length: cols }, (_, i) => i))
   }, [])
+
+  // No renderizar nada en el servidor para evitar errores de hidratación
+  if (!isClient) {
+    return null
+  }
 
   return (
     <Box

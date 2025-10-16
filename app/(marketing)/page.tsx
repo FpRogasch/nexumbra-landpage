@@ -55,11 +55,11 @@ import { ChakraLogo, NextjsLogo } from '#components/logos'
 import { FallInPlace } from '#components/motion/fall-in-place'
 import { Em } from '#components/typography'
 import faq from '#data/faq'
-import pricing from '#data/pricing'
+import pricingTabs from '#data/pricing-tabs'
 import testimonials from '#data/testimonials'
 import { Features } from '#components/features'
 import { Faq } from '#components/faq'
-import { Pricing } from '#components/pricing/pricing'
+import { PricingTabs } from '#components/pricing/pricing-tabs'
 import { Testimonials } from '#components/testimonials'
 import { Testimonial } from '#components/testimonials'
 
@@ -750,7 +750,7 @@ const FeaturesSection = () => {
 const PricingSection = () => {
   return (
     <FallInPlace delay={0.2}>
-      <Pricing {...pricing} id="planes">
+      <PricingTabs {...pricingTabs} id="planes">
         <Text p="8" textAlign="center" color="muted">
           Los precios están en pesos chilenos (CLP). Aceptamos transferencias bancarias y emitimos factura electrónica.
           <br />
@@ -758,7 +758,7 @@ const PricingSection = () => {
             Ver Proyectos Realizados →
           </ButtonLink>
         </Text>
-      </Pricing>
+      </PricingTabs>
     </FallInPlace>
   )
 }
