@@ -41,7 +41,6 @@ export default {
             { title: 'Hosting 1 año incluido' },
             { title: 'Dominio .com 1 año incluido' },
             { title: 'Certificado SSL gratuito' },
-            { title: 'Entrega: 1-2 semanas' },
             { title: 'Soporte: 1 mes' },
           ],
           action: {
@@ -117,7 +116,6 @@ export default {
             { title: 'VPS 1 año incluido' },
             { title: 'Dominio .com 1 año' },
             { title: 'SSL y seguridad básica' },
-            { title: 'Entrega: 6-8 semanas' },
             { title: 'Soporte: 3 meses' },
           ],
           action: {
@@ -144,7 +142,6 @@ export default {
             { title: 'Testing automatizado' },
             { title: 'VPS premium 1 año' },
             { title: 'Backup automatizado' },
-            { title: 'Entrega: 8-12 semanas' },
             { title: 'Soporte: 6 meses' },
           ],
           action: {
@@ -169,7 +166,6 @@ export default {
             { title: 'VPS enterprise 1 año' },
             { title: 'CI/CD configurado' },
             { title: 'Monitoreo y alertas' },
-            { title: 'Entrega: 12-16 semanas' },
             { title: 'Soporte: 12 meses' },
           ],
           action: {
@@ -201,7 +197,6 @@ export default {
             { title: 'Integración con ERP/CRM' },
             { title: 'Infraestructura cloud incluida' },
             { title: 'Backup y recuperación' },
-            { title: 'Entrega: 16-20 semanas' },
             { title: 'Capacitación del equipo' },
             { title: 'Soporte: 12 meses' },
           ],
@@ -230,7 +225,6 @@ export default {
             { title: 'Infraestructura cloud premium' },
             { title: 'DevOps y CI/CD completo' },
             { title: 'Monitoreo y alertas avanzadas' },
-            { title: 'Entrega: 20-24 semanas' },
             { title: 'Capacitación completa del equipo' },
             { title: 'SLA personalizado' },
             { title: 'Soporte: 18 meses' },
@@ -257,7 +251,6 @@ export default {
             { title: 'Infraestructura cloud enterprise' },
             { title: 'DevOps enterprise completo' },
             { title: 'Monitoreo y observabilidad completa' },
-            { title: 'Entrega: 24-32 semanas' },
             { title: 'Capacitación enterprise completa' },
             { title: 'SLA premium personalizado' },
             { title: 'Soporte: 24 meses' },

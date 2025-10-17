@@ -48,9 +48,6 @@ export default {
           title: 'Hosting 1 año gratis',
         },
         {
-          title: 'Entrega: 1-2 semanas',
-        },
-        {
           title: 'Soporte: 1 mes',
         },
       ],
@@ -91,9 +88,6 @@ export default {
         },
         {
           title: 'Testing y documentación',
-        },
-        {
-          title: 'Entrega: 6-12 semanas',
         },
         {
           title: 'Soporte: 3 meses',

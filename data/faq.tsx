@@ -21,10 +21,12 @@ const faq = {
       q: '¿Qué tipo de proyectos desarrollan?',
       a: (
         <>
-          Desarrollamos todo tipo de soluciones digitales: desde landing pages simples 
-          y sitios web corporativos, hasta aplicaciones web complejas, sistemas de gestión 
-          empresarial (ERP), plataformas e-commerce y aplicaciones móviles. Nos adaptamos 
-          a las necesidades específicas de cada cliente.
+          Nos especializamos en ayudar a emprendedores y empresas a implementar soluciones 
+          digitales integrales para sus negocios. Desde landing pages optimizadas para conversión 
+          y sitios web con WordPress, hasta sistemas financieros complejos, intranets corporativas 
+          y plataformas de gestión empresarial. Nuestro enfoque es crear herramientas digitales 
+          que impulsen el crecimiento de tu negocio, adaptándonos a tu presupuesto y objetivos 
+          específicos.
         </>
       ),
     },
@@ -32,10 +34,11 @@ const faq = {
       q: '¿Cuánto tiempo toma desarrollar un proyecto?',
       a: (
         <>
-          Los tiempos varían según la complejidad. Una landing page puede estar lista 
-          en 1-2 semanas, un sitio web corporativo en 3-4 semanas, y sistemas más complejos 
-          pueden tomar de 2 a 6 meses. Siempre entregamos una estimación detallada después 
-          de la primera reunión.
+          Como muchas respuestas, depende claramente del proceso. Nuestro enfoque es hacer 
+          nuestro trabajo de forma profesional, por lo que realizamos reuniones y juntas, 
+          ya sea online o presencial, para poder captar toda la idea y necesidades de tu proyecto. 
+          Solo después de esta fase de análisis y planificación, entregamos una estimación 
+          detallada de tiempos y costos adaptada a tu proyecto específico.
         </>
       ),
     },
@@ -43,9 +46,12 @@ const faq = {
       q: '¿Qué tecnologías utilizan?',
       a: (
         <>
-          Trabajamos con tecnologías modernas y probadas: React, Next.js, Node.js, 
-          TypeScript, PostgreSQL, MongoDB, y más. Elegimos el stack tecnológico más 
-          adecuado para cada proyecto, priorizando escalabilidad, rendimiento y mantenibilidad.
+          Nos adaptamos a todas las tecnologías según las necesidades del proyecto. 
+          Sin embargo, cuando el código es personalizado, solemos utilizar React, Redux, 
+          Next.js, NestJS, Node.js Express, PostgreSQL o MongoDB. Siempre recomendamos 
+          a nuestros clientes tener un VPS para poder hacer deploy con Dokploy y GitHub, 
+          lo que nos permite tener el control necesario para instalar en el servidor del 
+          cliente todas las aplicaciones y funciones que necesitamos para tu proyecto.
         </>
       ),
     },
@@ -53,9 +59,14 @@ const faq = {
       q: '¿Ofrecen mantenimiento y soporte después de la entrega?',
       a: (
         <>
-          Sí, todos nuestros proyectos incluyen un período de garantía y ofrecemos planes 
-          de mantenimiento continuo. Esto incluye actualizaciones de seguridad, corrección 
-          de errores, actualizaciones de contenido y mejoras incrementales según tus necesidades.
+          Sí, todos nuestros proyectos incluyen un período de soporte y mantenimiento gratuito. 
+          Una vez finalizado este período, continuamos brindando servicios de mantenimiento 
+          y soporte técnico con costos que varían según la complejidad de los cambios requeridos. 
+          
+          Además, te entregamos el proyecto con total libertad de uso, acompañado de una 
+          capacitación completa que incluye el manejo de las plataformas utilizadas y los 
+          conceptos esenciales para mantener tu sitio web o aplicación en línea, como la 
+          gestión de dominios, hosting, VPS, certificados SSL y configuraciones básicas de servidor.
         </>
       ),
     },
@@ -73,10 +84,16 @@ const faq = {
       q: '¿Cómo funciona el proceso de desarrollo?',
       a: (
         <>
-          Seguimos una metodología ágil: 1) Reunión inicial para entender tus necesidades, 
-          2) Propuesta y cotización detallada, 3) Diseño UI/UX, 4) Desarrollo iterativo con 
-          entregas parciales, 5) Testing y ajustes, 6) Lanzamiento y capacitación. Te mantenemos 
-          informado en cada etapa.
+          Siempre seguimos una metodología ágil, manteniendo comunicación constante con reuniones 
+          cada 2 semanas mínimo para asegurar que el proyecto evolucione según tus expectativas. 
+          Comenzamos con una propuesta y cotización detallada basada en tus necesidades específicas. 
+          Posteriormente, desarrollamos el diseño UI/UX personalizado que refleje la identidad de 
+          tu marca. El desarrollo se realiza de forma iterativa con entregas parciales regulares, 
+          permitiendo feedback continuo y ajustes en tiempo real. Una vez completado, realizamos 
+          testing exhaustivo y refinamos todos los detalles antes del lanzamiento final. 
+          Te proporcionamos capacitación completa para que puedas gestionar tu proyecto de forma 
+          independiente. Te mantenemos informado en cada etapa del proceso para garantizar 
+          transparencia total.
         </>
       ),
     },
