@@ -10,8 +10,8 @@ const siteConfig = {
     title: 'Nexumbra Code - Desarrollo de Software y Aplicaciones Web en Chile',
     description: 'Startup chilena especializada en desarrollo de software y aplicaciones web. Desde landing pages simples hasta sistemas complejos para empresas. Equipo profesional de desarrolladores y diseñadores.',
   } as NextSeoProps,
-  termsUrl: '#terminos',
-  privacyUrl: '#privacidad',
+  termsUrl: '/terminos',
+  privacyUrl: '/privacidad',
   header: {
     links: [
       {
@@ -40,7 +40,7 @@ const siteConfig = {
   footer: {
     copyright: (
       <>
-        © 2024 Nexumbra Code - Startup Chilena de Desarrollo de Software{' '}
+        © 2025 Nexumbra Code - Startup Chilena de Desarrollo de Software{' '}
         <br />
         Hecho con ❤️ en Chile
       </>
