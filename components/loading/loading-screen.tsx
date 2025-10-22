@@ -74,35 +74,53 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
           transition={{ duration: 0.8 } as any}
       >
         {/* Logo con gradiente */}
-        <MotionBox
+        <Box
           fontSize="4xl"
           fontWeight="bold"
           mb={4}
           bgGradient="linear(to-r, primary.500, cyan.400)"
           bgClip="text"
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 } as any}
+          sx={{
+            animation: 'logoPulse 2s ease-in-out infinite',
+            '@keyframes logoPulse': {
+              '0%': { transform: 'scale(1)', opacity: 1 },
+              '50%': { transform: 'scale(1.05)', opacity: 0.8 },
+              '100%': { transform: 'scale(1)', opacity: 1 },
+            },
+          }}
         >
           &lt;Nexumbra /&gt;
-        </MotionBox>
+        </Box>
 
         {/* Texto de carga */}
-        <Text
+        <Box
           color="gray.300"
           fontSize="lg"
           mb={8}
           fontFamily="monospace"
+          sx={{
+            animation: 'textBlink 1.5s ease-in-out infinite',
+            '@keyframes textBlink': {
+              '0%': { opacity: 0.7 },
+              '50%': { opacity: 1 },
+              '100%': { opacity: 0.7 },
+            },
+          }}
         >
           Inicializando sistema...
-        </Text>
+        </Box>
 
         {/* Spinner personalizado */}
-        <MotionBox
+        <Box
           mb={6}
-          initial={{ rotate: 0 }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'linear' } as any}
+          sx={{
+            animation: 'spinnerPulse 2s ease-in-out infinite',
+            '@keyframes spinnerPulse': {
+              '0%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.05)' },
+              '100%': { transform: 'scale(1)' },
+            },
+          }}
         >
           <Box
             width="60px"
@@ -112,6 +130,18 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
             borderTopColor="cyan.400"
             borderRadius="full"
             position="relative"
+            sx={{
+              boxShadow: '0 0 20px rgba(139, 92, 246, 0.3)',
+              animation: 'spinnerGlow 2s ease-in-out infinite alternate, spinnerRotate 3s linear infinite',
+              '@keyframes spinnerGlow': {
+                '0%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.3)' },
+                '100%': { boxShadow: '0 0 30px rgba(0, 217, 255, 0.5)' },
+              },
+              '@keyframes spinnerRotate': {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' },
+              },
+            }}
             _before={{
               content: '""',
               position: 'absolute',
@@ -123,16 +153,16 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
               borderColor: 'transparent',
               borderTopColor: 'primary.500',
               borderRadius: 'full',
-              animation: 'spin 1.5s linear infinite reverse',
+              animation: 'spinnerInnerRotate 1.5s linear infinite reverse',
             }}
             sx={{
-              '@keyframes spin': {
+              '@keyframes spinnerInnerRotate': {
                 '0%': { transform: 'rotate(0deg)' },
                 '100%': { transform: 'rotate(360deg)' },
               },
             }}
           />
-        </MotionBox>
+        </Box>
 
         {/* Barra de progreso */}
         <Box width="300px" mb={4}>
@@ -151,18 +181,27 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.3 } as any}
+              sx={{
+                boxShadow: '0 0 10px rgba(139, 92, 246, 0.5)',
+                animation: 'progressPulse 1.5s ease-in-out infinite',
+                '@keyframes progressPulse': {
+                  '0%': { boxShadow: '0 0 10px rgba(139, 92, 246, 0.5)' },
+                  '50%': { boxShadow: '0 0 20px rgba(0, 217, 255, 0.8)' },
+                  '100%': { boxShadow: '0 0 10px rgba(139, 92, 246, 0.5)' },
+                },
+              }}
               _after={{
                 content: '""',
                 position: 'absolute',
                 top: 0,
                 right: 0,
                 bottom: 0,
-                width: '20px',
-                background: 'linear-gradient(to right, transparent, rgba(0, 217, 255, 0.8))',
-                animation: 'shimmer 2s infinite',
+                width: '30px',
+                background: 'linear-gradient(to right, transparent, rgba(0, 217, 255, 0.9), transparent)',
+                animation: 'progressShimmer 1.5s infinite',
               }}
               sx={{
-                '@keyframes shimmer': {
+                '@keyframes progressShimmer': {
                   '0%': { transform: 'translateX(-100%)' },
                   '100%': { transform: 'translateX(100%)' },
                 },
@@ -171,15 +210,23 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
           </Box>
           
           {/* Porcentaje */}
-          <Text
+          <Box
             color="cyan.400"
             fontSize="sm"
             fontFamily="monospace"
             mt={2}
             textAlign="center"
+            sx={{
+              animation: 'percentagePulse 1s ease-in-out infinite',
+              '@keyframes percentagePulse': {
+                '0%': { opacity: 0.8, transform: 'scale(1)' },
+                '50%': { opacity: 1, transform: 'scale(1.05)' },
+                '100%': { opacity: 0.8, transform: 'scale(1)' },
+              },
+            }}
           >
             {Math.round(progress)}%
-          </Text>
+          </Box>
         </Box>
 
         {/* Mensajes de estado */}
@@ -199,6 +246,14 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
               fontSize="sm"
               fontFamily="monospace"
               textAlign="center"
+              sx={{
+                animation: 'statusBlink 2s ease-in-out infinite',
+                '@keyframes statusBlink': {
+                  '0%': { opacity: 0.7 },
+                  '50%': { opacity: 1 },
+                  '100%': { opacity: 0.7 },
+                },
+              }}
             >
               {phase === 'initializing' && 'Inicializando aplicación...'}
               {phase === 'hydrating' && 'Hidratando componentes...'}
