@@ -112,7 +112,7 @@ const TerminosPage = () => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6 } as any}
               textAlign="center"
               py="8"
             >
@@ -152,7 +152,7 @@ const TerminosPage = () => {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 } as any}
                 >
                   <Box
                     p="6"
@@ -208,7 +208,7 @@ const TerminosPage = () => {
             <MotionBox
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.8 } as any}
               textAlign="center"
               py="8"
             >

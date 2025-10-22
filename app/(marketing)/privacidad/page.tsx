@@ -124,7 +124,7 @@ const PrivacidadPage = () => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut" } as any}
               textAlign="center"
               py="8"
             >
@@ -161,7 +161,7 @@ const PrivacidadPage = () => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.1 } as any}
             >
               <Box
                 p="6"
@@ -214,7 +214,7 @@ const PrivacidadPage = () => {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: (index + 1) * 0.1 }}
+                  transition={{ duration: 0.6, delay: (index + 1) * 0.1 } as any}
                 >
                   <Box
                     p="6"
@@ -270,7 +270,7 @@ const PrivacidadPage = () => {
             <MotionBox
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
+              transition={{ duration: 0.6, delay: 1.0 } as any}
               textAlign="center"
               py="8"
             >

@@ -1,6 +1,4 @@
 /**
  * Logos de tecnologías utilizadas en la aplicación
- * Solo exportamos los logos que están siendo utilizados
+ * Actualmente no hay logos exportados ya que no se están utilizando
  */
-export * from './chakra'
-export * from './next'

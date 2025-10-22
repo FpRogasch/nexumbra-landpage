@@ -141,6 +141,10 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
                 '0%': { transform: 'rotate(0deg)' },
                 '100%': { transform: 'rotate(360deg)' },
               },
+              '@keyframes spinnerInnerRotate': {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' },
+              },
             }}
             _before={{
               content: '""',
@@ -154,12 +158,6 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
               borderTopColor: 'primary.500',
               borderRadius: 'full',
               animation: 'spinnerInnerRotate 1.5s linear infinite reverse',
-            }}
-            sx={{
-              '@keyframes spinnerInnerRotate': {
-                '0%': { transform: 'rotate(0deg)' },
-                '100%': { transform: 'rotate(360deg)' },
-              },
             }}
           />
         </Box>
@@ -189,6 +187,10 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
                   '50%': { boxShadow: '0 0 20px rgba(0, 217, 255, 0.8)' },
                   '100%': { boxShadow: '0 0 10px rgba(139, 92, 246, 0.5)' },
                 },
+                '@keyframes progressShimmer': {
+                  '0%': { transform: 'translateX(-100%)' },
+                  '100%': { transform: 'translateX(100%)' },
+                },
               }}
               _after={{
                 content: '""',
@@ -199,12 +201,6 @@ export function LoadingScreen({ onComplete, delay = 2000 }: LoadingScreenProps) 
                 width: '30px',
                 background: 'linear-gradient(to right, transparent, rgba(0, 217, 255, 0.9), transparent)',
                 animation: 'progressShimmer 1.5s infinite',
-              }}
-              sx={{
-                '@keyframes progressShimmer': {
-                  '0%': { transform: 'translateX(-100%)' },
-                  '100%': { transform: 'translateX(100%)' },
-                },
               }}
             />
           </Box>

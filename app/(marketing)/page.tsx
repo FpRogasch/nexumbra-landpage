@@ -61,17 +61,13 @@ import {
   HighlightsItem,
   HighlightsTestimonialItem,
 } from '#components/highlights'
-import { ChakraLogo, NextjsLogo } from '#components/logos'
 import { FallInPlace } from '#components/motion/fall-in-place'
 import { Em } from '#components/typography'
 import faq from '#data/faq'
 import pricingTabs from '#data/pricing-tabs'
-import testimonials from '#data/testimonials'
 import { Features } from '#components/features'
 import { Faq } from '#components/faq'
 import { PricingTabs } from '#components/pricing/pricing-tabs'
-import { Testimonials } from '#components/testimonials'
-import { Testimonial } from '#components/testimonials'
 
 
 const Home: NextPage = () => {
@@ -273,11 +269,6 @@ const HeroSection: React.FC = () => {
                 </>
               }
             >
-                {/*
-                <HStack pt="4" pb="12" spacing="8">
-                  <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
-                </HStack>
-                */}
 
                 <ButtonGroup pt="4" pb="12" mt="12" spacing={4} alignItems="center">
                   <ButtonLink

@@ -172,7 +172,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                    repeat: Infinity,
                    delay: i * 0.5,
                    ease: "linear"
-                 }}
+                 } as any}
                />
              )
            })}
@@ -185,7 +185,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.6 }}
+               transition={{ duration: 0.6 } as any}
               viewport={{ once: true }}
             >
               <Flex 
@@ -264,7 +264,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.6, delay: 0.1 }}
+               transition={{ duration: 0.6, delay: 0.1 } as any}
               viewport={{ once: true }}
             >
               <Flex 
@@ -304,7 +304,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.6, delay: 0.2 }}
+               transition={{ duration: 0.6, delay: 0.2 } as any}
               viewport={{ once: true }}
             >
               <Flex 
@@ -323,7 +323,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       key={href}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                       transition={{ duration: 0.2 }}
+                       transition={{ duration: 0.2 } as any}
                     >
                       <SocialLink href={href}>
                         {label}
