@@ -1,3 +1,8 @@
+/**
+ * Datos de proyectos para la sección de portafolio
+ * Contiene información detallada de proyectos realizados
+ * Incluye tecnologías, características, estadísticas y enlaces
+ */
 export default {
   title: 'Nuestros Proyectos',
   description: 'Soluciones innovadoras que hemos desarrollado para nuestros clientes',

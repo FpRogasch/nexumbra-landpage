@@ -1,3 +1,8 @@
+/**
+ * Configuración central del sitio web
+ * Contiene toda la información de navegación, SEO, footer y enlaces
+ * Este archivo es la fuente única de verdad para la configuración del sitio
+ */
 import { Button } from '@chakra-ui/react'
 import { Link } from '@saas-ui/react'
 import { NextSeoProps } from 'next-seo'

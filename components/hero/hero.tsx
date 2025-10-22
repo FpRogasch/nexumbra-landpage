@@ -1,3 +1,8 @@
+/**
+ * Componente Hero reutilizable para secciones principales
+ * Utilizado en la página principal y otras páginas importantes
+ * Proporciona estructura consistente para títulos y descripciones
+ */
 import { Container, Flex, FlexProps, Text, VStack } from '@chakra-ui/react'
 
 interface HeroProps extends Omit<FlexProps, 'title'> {

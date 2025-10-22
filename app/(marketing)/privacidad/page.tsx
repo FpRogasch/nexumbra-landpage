@@ -23,6 +23,10 @@ const PrivacidadPage = () => {
   const headingColor = useColorModeValue('gray.800', 'gray.100')
   const accentColor = useColorModeValue('primary.500', 'cyan.400')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
+  
+  // Colores para las secciones destacadas
+  const highlightBg = useColorModeValue('cyan.50', 'cyan.900')
+  const normalBg = useColorModeValue('white', 'gray.800')
 
   const privacySections = [
     {
@@ -120,7 +124,7 @@ const PrivacidadPage = () => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               textAlign="center"
               py="8"
             >
@@ -217,10 +221,7 @@ const PrivacidadPage = () => {
                     borderRadius="lg"
                     border="1px solid"
                     borderColor={borderColor}
-                    bg={section.highlight ? 
-                      useColorModeValue('cyan.50', 'cyan.900') : 
-                      useColorModeValue('white', 'gray.800')
-                    }
+                    bg={section.highlight ? highlightBg : normalBg}
                     _dark={section.highlight ? {
                       bg: 'cyan.900',
                       borderColor: 'cyan.700'

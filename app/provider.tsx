@@ -1,3 +1,10 @@
+/**
+ * Proveedor de contexto global de la aplicación
+ * Envuelve la app con los proveedores necesarios:
+ * - SaasProvider: Tema y configuración de Chakra UI
+ * - AuthProvider: Gestión de autenticación
+ * - LoadingWrapper: Pantalla de carga inicial
+ */
 'use client'
 
 import { AuthProvider } from '@saas-ui/auth'
@@ -10,7 +17,8 @@ export function Provider(props: { children: React.ReactNode }) {
   return (
     <SaasProvider theme={theme}>
       <AuthProvider>
-        <LoadingWrapper delay={2500}>
+        {/* Pantalla de carga con delay reducido para mejor UX */}
+        <LoadingWrapper delay={1500}>
           {props.children}
         </LoadingWrapper>
       </AuthProvider>

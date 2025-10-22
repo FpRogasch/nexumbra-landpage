@@ -45,7 +45,7 @@ export const Pricing: React.FC<PricingProps> = memo((props) => {
 
         <SimpleGrid columns={[1, null, 3]} spacing={4}>
           {plans?.map((plan, index) => (
-            <FallInPlace key={plan.id} delay={index * 0.1}>
+            <FallInPlace key={plan.id} delay={index * 0.05}>
               <PricingBox
                 title={plan.title}
                 description={plan.description}

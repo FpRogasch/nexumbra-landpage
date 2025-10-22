@@ -1,8 +1,14 @@
+/**
+ * Hook personalizado para detectar qué sección está visible en el viewport
+ * Utiliza IntersectionObserver y scroll listeners para determinar la sección activa
+ * Se usa en la navegación para resaltar la sección actual
+ * Optimizado para considerar la altura del header fijo
+ */
 import * as React from 'react'
 
 export function useScrollSpy(
-  selectors: string[],
-  options?: IntersectionObserverInit
+  selectors: string[], // Selectores CSS de las secciones a observar
+  options?: IntersectionObserverInit // Opciones del IntersectionObserver
 ) {
   const [activeId, setActiveId] = React.useState<string | null>()
   const observer = React.useRef<IntersectionObserver | null>(null)

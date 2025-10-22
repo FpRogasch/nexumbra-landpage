@@ -96,8 +96,9 @@ export function EdgeCodeRain({ position = 'both', width = 100 }: EdgeCodeRainPro
         left={`${col * actualColumnWidth}px`}
         top={-20}
         sx={{
-          animation: `fall${side} ${isMounted ? 12 + Math.random() * 16 : 20}s linear infinite`, // Velocidad reducida a la mitad (12-28s)
-          animationDelay: `${isMounted ? instance * 0.4 + Math.random() * 0.6 : instance * 0.5}s`, // Delays escalonados para mayor frecuencia
+          // Usar valores fijos basados en la instancia para evitar Math.random() en cada render
+          animation: `fall${side} ${isMounted ? 12 + (instance % 16) : 20}s linear infinite`, // Velocidad variada pero determinística
+          animationDelay: `${isMounted ? instance * 0.4 + (instance % 10) * 0.06 : instance * 0.5}s`, // Delays escalonados determinísticos
           [`@keyframes fall${side}`]: {
             '0%': { 
               transform: 'translateY(-120vh)', // Empezar más arriba
@@ -118,10 +119,10 @@ export function EdgeCodeRain({ position = 'both', width = 100 }: EdgeCodeRainPro
       >
         {[...Array(columnChars)].map((_, i) => {
           const isLeading = i === 0
-          // Usar valores consistentes cuando no está montado
-          const isCode = isMounted ? Math.random() > 0.15 : true // 85% chance de mostrar código real (más continuidad)
-          const shouldBeCyan = isLeading || (isMounted ? Math.random() > 0.6 : i % 3 === 0)
-          const shouldHaveGlow = isLeading || (isMounted ? Math.random() > 0.6 : i % 4 === 0)
+          // Usar valores determinísticos basados en posición para consistencia
+          const isCode = isMounted ? (instance + i) % 6 !== 0 : true // ~85% chance de mostrar código real
+          const shouldBeCyan = isLeading || (isMounted ? (instance + i) % 3 !== 0 : i % 3 === 0)
+          const shouldHaveGlow = isLeading || (isMounted ? (instance + i) % 4 !== 0 : i % 4 === 0)
           
           return (
             <Text

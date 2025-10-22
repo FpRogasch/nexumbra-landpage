@@ -1,8 +1,18 @@
+/**
+ * Layout principal de la aplicación Next.js
+ * Configura fuentes, temas, favicons y proveedores globales
+ * Este es el layout raíz que envuelve toda la aplicación
+ */
 import { ColorModeScript, theme } from '@chakra-ui/react'
 import { Ubuntu, Space_Grotesk } from 'next/font/google'
 
 import { Provider } from './provider'
 
+/**
+ * Configuración de fuentes personalizadas
+ * Ubuntu: Fuente principal para títulos y texto destacado
+ * Space Grotesk: Fuente secundaria para texto de cuerpo
+ */
 const ubuntu = Ubuntu({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
@@ -17,12 +27,22 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
 })
 
+/**
+ * Componente Layout principal que envuelve toda la aplicación
+ * Configura el HTML base, meta tags, favicons y proveedores
+ */
 export default function Layout(props: { children: React.ReactNode }) {
   const colorMode = theme.config.initialColorMode
 
   return (
-    <html lang="es" data-theme={colorMode} style={{ colorScheme: colorMode }} className={`${ubuntu.variable} ${spaceGrotesk.variable}`}>
+    <html 
+      lang="es" 
+      data-theme={colorMode} 
+      style={{ colorScheme: colorMode }} 
+      className={`${ubuntu.variable} ${spaceGrotesk.variable}`}
+    >
       <head>
+        {/* Favicons para diferentes dispositivos y tamaños */}
         <link
           rel="apple-touch-icon"
           sizes="76x76"
@@ -43,7 +63,10 @@ export default function Layout(props: { children: React.ReactNode }) {
         <link rel="manifest" href="/static/favicons/manifest.json" />
       </head>
       <body className={`chakra-ui-${colorMode} ${ubuntu.variable} ${spaceGrotesk.variable}`}>
+        {/* Script para inicializar el modo de color de Chakra UI */}
         <ColorModeScript initialColorMode={colorMode} />
+        
+        {/* Proveedores globales: tema, autenticación y loading */}
         <Provider>{props.children}</Provider>
       </body>
     </html>

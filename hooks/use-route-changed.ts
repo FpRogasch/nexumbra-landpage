@@ -1,3 +1,8 @@
+/**
+ * Hook personalizado para detectar cambios de ruta
+ * Útil para cerrar menús móviles o ejecutar acciones cuando cambia la página
+ * Utiliza usePathname de Next.js para detectar cambios de URL
+ */
 import { usePathname } from 'next/navigation'
 
 import { useEffect, useRef } from 'react'

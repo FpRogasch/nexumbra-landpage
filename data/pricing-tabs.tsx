@@ -1,5 +1,5 @@
 import { HStack, Text, Heading, Box } from '@chakra-ui/react'
-import { FiGlobe, FiCode, FiBuilding } from 'react-icons/fi'
+import { FiGlobe, FiCode, FiHome } from 'react-icons/fi'
 
 export default {
   title: (
@@ -179,7 +179,7 @@ export default {
       id: 'enterprise',
       name: 'Enterprise',
       description: 'Sistemas complejos y soluciones escalables a medida',
-      icon: FiBuilding,
+      icon: FiHome,
       color: 'purple',
       subTiers: [
         {

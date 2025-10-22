@@ -131,30 +131,51 @@ export const Footer: React.FC<FooterProps> = (props) => {
           opacity={0.1}
           pointerEvents="none"
         >
-          {[...Array(8)].map((_, i) => (
-            <MotionBox
-              key={i}
-              position="absolute"
-              width="2px"
-              height="2px"
-              borderRadius="full"
-              bg={i % 2 === 0 ? 'primary.500' : 'cyan.500'}
-              initial={{
-                x: `${Math.random() * 100}%`,
-                y: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                x: `${Math.random() * 100}%`,
-                y: `${Math.random() * 100}%`,
-                opacity: [0.2, 0.8, 0.2],
-              }}
-              transition={{
-                duration: 8 + Math.random() * 4,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
+           {[...Array(8)].map((_, i) => {
+             // Valores fijos para cada partícula para evitar Math.random() en cada render
+             const positions = [
+               { x: '20%', y: '30%' },
+               { x: '80%', y: '20%' },
+               { x: '60%', y: '70%' },
+               { x: '10%', y: '80%' },
+               { x: '90%', y: '60%' },
+               { x: '40%', y: '10%' },
+               { x: '70%', y: '90%' },
+               { x: '30%', y: '50%' }
+             ]
+             const targetPositions = [
+               { x: '80%', y: '70%' },
+               { x: '20%', y: '80%' },
+               { x: '40%', y: '30%' },
+               { x: '90%', y: '20%' },
+               { x: '10%', y: '40%' },
+               { x: '60%', y: '90%' },
+               { x: '30%', y: '10%' },
+               { x: '70%', y: '50%' }
+             ]
+             
+             return (
+               <MotionBox
+                 key={i}
+                 position="absolute"
+                 width="2px"
+                 height="2px"
+                 borderRadius="full"
+                 bg={i % 2 === 0 ? 'primary.500' : 'cyan.500'}
+                 initial={positions[i]}
+                 animate={{
+                   ...targetPositions[i],
+                   opacity: [0.2, 0.8, 0.2],
+                 }}
+                 transition={{
+                   duration: 8,
+                   repeat: Infinity,
+                   delay: i * 0.5,
+                   ease: "linear"
+                 }}
+               />
+             )
+           })}
         </Box>
 
         <Container maxW="container.2xl" px="6" py="6">
@@ -164,7 +185,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
               <Flex 
@@ -243,7 +264,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
               <Flex 
@@ -283,7 +304,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
               <Flex 
@@ -302,7 +323,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       key={href}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                       transition={{ duration: 0.2 }}
                     >
                       <SocialLink href={href}>
                         {label}

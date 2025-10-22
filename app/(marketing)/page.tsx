@@ -1,3 +1,13 @@
+/**
+ * Página principal (Home) de Nexumbra Code
+ * Landing page completa con todas las secciones:
+ * - Hero con animaciones y CTA
+ * - Características y servicios
+ * - Testimonios de clientes
+ * - Planes y precios
+ * - FAQ
+ * - Call to action final
+ */
 'use client'
 
 import {
@@ -65,7 +75,11 @@ import { Testimonial } from '#components/testimonials'
 
 
 const Home: NextPage = () => {
-  // Manejar scroll suave cuando se carga la página con hash
+  /**
+   * Hook para manejar scroll suave cuando se carga la página con hash
+   * Permite navegar directamente a secciones específicas desde URLs externas
+   * Ejemplo: /#servicios, /#planes, /#faq
+   */
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -74,7 +88,7 @@ const Home: NextPage = () => {
       const timer = setTimeout(() => {
         const element = document.getElementById(id);
         if (element) {
-          const headerOffset = 100;
+          const headerOffset = 100; // Offset para compensar header fijo
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 

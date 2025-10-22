@@ -23,6 +23,10 @@ const TerminosPage = () => {
   const headingColor = useColorModeValue('gray.800', 'gray.100')
   const accentColor = useColorModeValue('primary.500', 'cyan.400')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
+  
+  // Colores para las secciones destacadas
+  const highlightBg = useColorModeValue('primary.50', 'primary.900')
+  const normalBg = useColorModeValue('white', 'gray.800')
 
   const legalSections = [
     {
@@ -155,10 +159,7 @@ const TerminosPage = () => {
                     borderRadius="lg"
                     border="1px solid"
                     borderColor={borderColor}
-                    bg={section.highlight ? 
-                      useColorModeValue('primary.50', 'primary.900') : 
-                      useColorModeValue('white', 'gray.800')
-                    }
+                    bg={section.highlight ? highlightBg : normalBg}
                     _dark={section.highlight ? {
                       bg: 'primary.900',
                       borderColor: 'primary.700'
