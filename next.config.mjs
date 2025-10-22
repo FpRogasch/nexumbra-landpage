@@ -17,7 +17,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: [
       '@chakra-ui/react',
-      '@chakra-ui/icons',
       'framer-motion',
       'react-icons',
       '@saas-ui/react'

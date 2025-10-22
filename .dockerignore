@@ -28,6 +28,10 @@ dist
 .DS_Store
 Thumbs.db
 
+# Git
+.git
+.gitignore
+
 # TypeScript build info
 tsconfig.tsbuildinfo
 
